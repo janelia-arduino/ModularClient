@@ -10,16 +10,16 @@
 
 
 template<typename T>
-void ModularClient::startRequest(const T method)
+void ModularClient::beginRequest(const T method)
 {
-  request_.startArray();
-  request_.add(method);
+  json_printer_.beginArray();
+  json_printer_.add(method);
 }
 
 template<typename T>
 void ModularClient::addParameter(const T parameter)
 {
-  request_.add(parameter);
+  json_printer_.add(parameter);
 }
 
 #endif

@@ -7,7 +7,7 @@
 // ----------------------------------------------------------------------------
 #ifndef MODULAR_CLIENT_H
 #define MODULAR_CLIENT_H
-// #include "utility/Client.h"
+#include "Arduino.h"
 #include "ArduinoJson.h"
 #include "JsonPrinter.h"
 #include "GenericSerial.h"
@@ -18,17 +18,22 @@ class ModularClient
 public:
   static const unsigned int STRING_LENGTH_RESPONSE=257;
   static const unsigned int JSON_BUFFER_SIZE=200;
+  static const unsigned int TIMEOUT_DEFAULT=1000;
 
   ModularClient(GenericSerialBase &serial);
   template<typename T>
-  void startRequest(const T method);
+  void beginRequest(const T method);
   template<typename T>
   void addParameter(const T parameter);
-  size_t sendRequestGetResponse(char response[], size_t response_size);
+  void endRequest();
+  bool getResponse(char response_buffer[], unsigned int buffer_size);
+  bool pipeResponse(GenericSerialBase &serial, unsigned int &bytes_piped);
+  bool pipeResponse(GenericSerialBase &serial);
   // ArduinoJson::JsonObject& sendRequestGetResponse(char response[STRING_LENGTH_RESPONSE], ArduinoJson::StaticJsonBuffer<JSON_BUFFER_SIZE>& buffer);
 private:
   GenericSerialBase* client_serial_ptr_;
-  JsonPrinter request_;
+  JsonPrinter json_printer_;
+  unsigned int timeout_;
 };
 #include "ModularClientDefinitions.h"
 

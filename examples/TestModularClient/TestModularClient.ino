@@ -11,28 +11,20 @@
 
 
 const int BAUDRATE = 9600;
-GenericSerial1to3 generic_serial(Serial2);
-ModularClient modular_client(generic_serial);
+GenericSerial generic_serial(Serial);
+GenericSerial1to3 generic_serial2(Serial2);
+ModularClient modular_client(generic_serial2);
 
 void getLedPin()
 {
   char response[ModularClient::STRING_LENGTH_RESPONSE];
   StaticJsonBuffer<ModularClient::JSON_BUFFER_SIZE> json_buffer;
 
-  modular_client.startRequest("getLedPin");
-  // ArduinoJson::JsonObject& response_object = modular_client.sendRequestGetResponse(response,json_buffer);
-  size_t response_length = modular_client.sendRequestGetResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
-  Serial << "getLedPin response_length = " << response_length << "\n";
+  modular_client.beginRequest("getLedPin");
+  modular_client.endRequest();
+  bool found_eol = modular_client.getResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
+  Serial << "getLedPin found_eol = " << found_eol << "\n";
   Serial << "response: " << "\n" << response << "\n";
-  // if (!response_object.success())
-  // {
-  //   Serial << "parseObject() failed" << "\n";
-  // }
-  // else
-  // {
-  //   response_object.printTo(Serial);
-  //   Serial << "\n";
-  // }
 }
 
 void help()
@@ -40,20 +32,11 @@ void help()
   char response[ModularClient::STRING_LENGTH_RESPONSE];
   StaticJsonBuffer<ModularClient::JSON_BUFFER_SIZE> json_buffer;
 
-  modular_client.startRequest("?");
-  // ArduinoJson::JsonObject& response_object = modular_client.sendRequestGetResponse(response,json_buffer);
-  size_t response_length = modular_client.sendRequestGetResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
-  Serial << "help response_length = " << response_length << "\n";
+  modular_client.beginRequest("?");
+  modular_client.endRequest();
+  bool found_eol = modular_client.getResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
+  Serial << "help found_eol = " << found_eol << "\n";
   Serial << "response: " << "\n" << response << "\n";
-  // if (!response_object.success())
-  // {
-  //   Serial << "parseObject() failed" << "\n";
-  // }
-  // else
-  // {
-  //   response_object.printTo(Serial);
-  //   Serial << "\n";
-  // }
 }
 
 void verboseHelp()
@@ -61,20 +44,16 @@ void verboseHelp()
   char response[ModularClient::STRING_LENGTH_RESPONSE];
   StaticJsonBuffer<ModularClient::JSON_BUFFER_SIZE> json_buffer;
 
-  modular_client.startRequest("??");
-  // ArduinoJson::JsonObject& response_object = modular_client.sendRequestGetResponse(response,json_buffer);
-  size_t response_length = modular_client.sendRequestGetResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
-  Serial << "verboseHelp response_length = " << response_length << "\n";
-  Serial << "response: " << "\n" << response << "\n";
-  // if (!response_object.success())
-  // {
-  //   Serial << "parseObject() failed" << "\n";
-  // }
-  // else
-  // {
-  //   response_object.printTo(Serial);
-  //   Serial << "\n";
-  // }
+  modular_client.beginRequest("??");
+  modular_client.endRequest();
+  Serial << "verboseHelp: " << "\n";
+  unsigned int bytes_piped;
+  bool found_eol = modular_client.pipeResponse(generic_serial,bytes_piped);
+  // bool found_eol = modular_client.getResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
+  Serial << "\n";
+  Serial << "verboseHelp found_eol = " << found_eol << "\n";
+  Serial << "verboseHelp bytes_piped = " << bytes_piped << "\n";
+  // Serial << "response: " << "\n" << response << "\n";
 }
 
 void blinkLed()
@@ -84,30 +63,20 @@ void blinkLed()
 
   int test_delay = 500;
 
-  modular_client.startRequest("blinkLed");
+  modular_client.beginRequest("blinkLed");
   modular_client.addParameter(0.5);
   modular_client.addParameter(0.5);
   modular_client.addParameter(10);
-  // ArduinoJson::JsonObject& response_object = modular_client.sendRequestGetResponse(response,json_buffer);
-  size_t response_length = modular_client.sendRequestGetResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
-  Serial << "blinkLed response_length = " << response_length << "\n";
+  modular_client.endRequest();
+  bool found_eol = modular_client.getResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
+  Serial << "blinkLed found_eol = " << found_eol << "\n";
   Serial << "response: " << "\n" << response << "\n";
-
-  // if (!response_object.success())
-  // {
-  //   Serial << "parseObject() failed" << "\n";
-  // }
-  // else
-  // {
-  //   response_object.printTo(Serial);
-  //   Serial << "\n";
-  // }
 }
 
 void setup()
 {
-  Serial.begin(BAUDRATE);
   generic_serial.begin(BAUDRATE);
+  generic_serial2.begin(BAUDRATE);
 }
 
 void loop()
