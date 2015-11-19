@@ -40,12 +40,12 @@ bool ModularClient::getResponse(char response_buffer[], unsigned int buffer_size
   return found_eol;
 }
 
-bool ModularClient::pipeResponse(GenericSerialBase &serial, unsigned int &bytes_piped)
+bool ModularClient::pipeResponse(GenericSerialBase &serial, unsigned int &chars_piped)
 {
   bool found_eol = false;
   int c;
   unsigned long start_millis = millis();
-  bytes_piped = 0;
+  chars_piped = 0;
   while (!found_eol && ((millis() - start_millis) < timeout_))
   {
     c = client_serial_ptr_->getStream().read();
@@ -54,7 +54,7 @@ bool ModularClient::pipeResponse(GenericSerialBase &serial, unsigned int &bytes_
       if ((char)c != JsonPrinter::EOL)
       {
         serial.getStream() << (char)c;
-        bytes_piped++;
+        chars_piped++;
       }
       else
       {
@@ -67,6 +67,37 @@ bool ModularClient::pipeResponse(GenericSerialBase &serial, unsigned int &bytes_
 
 bool ModularClient::pipeResponse(GenericSerialBase &serial)
 {
-  unsigned int bytes_piped;
-  return pipeResponse(serial,bytes_piped);
+  unsigned int chars_piped;
+  return pipeResponse(serial,chars_piped);
+}
+
+bool ModularClient::pipeResponse(JsonPrinter &json_printer, unsigned int &chars_piped)
+{
+  bool found_eol = false;
+  int c;
+  unsigned long start_millis = millis();
+  chars_piped = 0;
+  while (!found_eol && ((millis() - start_millis) < timeout_))
+  {
+    c = client_serial_ptr_->getStream().read();
+    if (c >= 0)
+    {
+      if ((char)c != JsonPrinter::EOL)
+      {
+        json_printer.writeChar(c);
+        chars_piped++;
+      }
+      else
+      {
+        found_eol = true;
+      }
+    }
+  }
+  return found_eol;
+}
+
+bool ModularClient::pipeResponse(JsonPrinter &json_printer)
+{
+  unsigned int chars_piped;
+  return pipeResponse(json_printer,chars_piped);
 }

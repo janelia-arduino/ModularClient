@@ -47,12 +47,12 @@ void verboseHelp()
   modular_client.beginRequest("??");
   modular_client.endRequest();
   Serial << "verboseHelp: " << "\n";
-  unsigned int bytes_piped;
-  bool found_eol = modular_client.pipeResponse(generic_serial,bytes_piped);
+  unsigned int chars_piped;
+  bool found_eol = modular_client.pipeResponse(generic_serial,chars_piped);
   // bool found_eol = modular_client.getResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
   Serial << "\n";
   Serial << "verboseHelp found_eol = " << found_eol << "\n";
-  Serial << "verboseHelp bytes_piped = " << bytes_piped << "\n";
+  Serial << "verboseHelp chars_piped = " << chars_piped << "\n";
   // Serial << "response: " << "\n" << response << "\n";
 }
 

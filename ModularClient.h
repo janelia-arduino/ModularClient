@@ -27,8 +27,10 @@ public:
   void addParameter(const T parameter);
   void endRequest();
   bool getResponse(char response_buffer[], unsigned int buffer_size);
-  bool pipeResponse(GenericSerialBase &serial, unsigned int &bytes_piped);
+  bool pipeResponse(GenericSerialBase &serial, unsigned int &chars_piped);
   bool pipeResponse(GenericSerialBase &serial);
+  bool pipeResponse(JsonPrinter &json_printer, unsigned int &chars_piped);
+  bool pipeResponse(JsonPrinter &json_printer);
   // ArduinoJson::JsonObject& sendRequestGetResponse(char response[STRING_LENGTH_RESPONSE], ArduinoJson::StaticJsonBuffer<JSON_BUFFER_SIZE>& buffer);
 private:
   GenericSerialBase* client_serial_ptr_;
