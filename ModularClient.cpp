@@ -9,7 +9,7 @@
 
 
 ModularClient::ModularClient(GenericSerialBase &serial) :
-  json_printer_(serial)
+  json_stream_(serial)
 {
   client_serial_ptr_ = &serial;
   timeout_ = TIMEOUT_DEFAULT;
@@ -17,14 +17,14 @@ ModularClient::ModularClient(GenericSerialBase &serial) :
 
 void ModularClient::endRequest()
 {
-  json_printer_.endArray();
-  json_printer_.linefeed();
+  json_stream_.endArray();
+  json_stream_.linefeed();
 }
 
 bool ModularClient::getResponse(char response_buffer[], unsigned int buffer_size)
 {
   bool found_eol = false;
-  unsigned int bytes_read = client_serial_ptr_->getStream().readBytesUntil(JsonPrinter::EOL,response_buffer,buffer_size-1);
+  unsigned int bytes_read = client_serial_ptr_->getStream().readBytesUntil(JsonStream::EOL,response_buffer,buffer_size-1);
   if ((bytes_read > 0) && (bytes_read < (buffer_size-1)))
   {
     found_eol = true;
@@ -34,7 +34,7 @@ bool ModularClient::getResponse(char response_buffer[], unsigned int buffer_size
     // set response_buffer to empty string
     bytes_read = 0;
     // clear stream of remaining characters
-    client_serial_ptr_->getStream().find(JsonPrinter::EOL);
+    client_serial_ptr_->getStream().find(JsonStream::EOL);
   }
   response_buffer[bytes_read] = 0;
   return found_eol;
@@ -51,7 +51,7 @@ bool ModularClient::pipeResponse(GenericSerialBase &serial, unsigned int &chars_
     c = client_serial_ptr_->getStream().read();
     if (c >= 0)
     {
-      if ((char)c != JsonPrinter::EOL)
+      if ((char)c != JsonStream::EOL)
       {
         serial.getStream() << (char)c;
         chars_piped++;
@@ -71,7 +71,7 @@ bool ModularClient::pipeResponse(GenericSerialBase &serial)
   return pipeResponse(serial,chars_piped);
 }
 
-bool ModularClient::pipeResponse(JsonPrinter &json_printer, unsigned int &chars_piped)
+bool ModularClient::pipeResponse(JsonStream &json_stream, unsigned int &chars_piped)
 {
   bool found_eol = false;
   int c;
@@ -82,9 +82,9 @@ bool ModularClient::pipeResponse(JsonPrinter &json_printer, unsigned int &chars_
     c = client_serial_ptr_->getStream().read();
     if (c >= 0)
     {
-      if ((char)c != JsonPrinter::EOL)
+      if ((char)c != JsonStream::EOL)
       {
-        json_printer.writeChar(c);
+        json_stream.writeChar(c);
         chars_piped++;
       }
       else
@@ -96,8 +96,8 @@ bool ModularClient::pipeResponse(JsonPrinter &json_printer, unsigned int &chars_
   return found_eol;
 }
 
-bool ModularClient::pipeResponse(JsonPrinter &json_printer)
+bool ModularClient::pipeResponse(JsonStream &json_stream)
 {
   unsigned int chars_piped;
-  return pipeResponse(json_printer,chars_piped);
+  return pipeResponse(json_stream,chars_piped);
 }

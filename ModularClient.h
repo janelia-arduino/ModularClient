@@ -9,7 +9,7 @@
 #define MODULAR_CLIENT_H
 #include "Arduino.h"
 #include "ArduinoJson.h"
-#include "JsonPrinter.h"
+#include "JsonStream.h"
 #include "GenericSerial.h"
 
 
@@ -29,12 +29,12 @@ public:
   bool getResponse(char response_buffer[], unsigned int buffer_size);
   bool pipeResponse(GenericSerialBase &serial, unsigned int &chars_piped);
   bool pipeResponse(GenericSerialBase &serial);
-  bool pipeResponse(JsonPrinter &json_printer, unsigned int &chars_piped);
-  bool pipeResponse(JsonPrinter &json_printer);
+  bool pipeResponse(JsonStream &json_stream, unsigned int &chars_piped);
+  bool pipeResponse(JsonStream &json_stream);
   // ArduinoJson::JsonObject& sendRequestGetResponse(char response[STRING_LENGTH_RESPONSE], ArduinoJson::StaticJsonBuffer<JSON_BUFFER_SIZE>& buffer);
 private:
   GenericSerialBase* client_serial_ptr_;
-  JsonPrinter json_printer_;
+  JsonStream json_stream_;
   unsigned int timeout_;
 };
 #include "ModularClientDefinitions.h"

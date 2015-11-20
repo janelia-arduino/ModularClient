@@ -3,7 +3,7 @@
 #include <EEPROM.h>
 #include "Streaming.h"
 #include "ArduinoJson.h"
-#include "JsonPrinter.h"
+#include "JsonStream.h"
 #include "Array.h"
 #include "ConstantVariable.h"
 #include "GenericSerial.h"
