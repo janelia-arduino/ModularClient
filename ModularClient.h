@@ -10,7 +10,6 @@
 #include "Arduino.h"
 #include "ArduinoJson.h"
 #include "JsonStream.h"
-#include "GenericSerial.h"
 
 
 class ModularClient
@@ -20,20 +19,20 @@ public:
   static const unsigned int JSON_BUFFER_SIZE=200;
   static const unsigned int TIMEOUT_DEFAULT=1000;
 
-  ModularClient(GenericSerialBase &serial);
+  ModularClient(Stream &stream);
   template<typename T>
   void beginRequest(const T method);
   template<typename T>
   void addParameter(const T parameter);
   void endRequest();
-  bool getResponse(char response_buffer[], unsigned int buffer_size);
-  bool pipeResponse(GenericSerialBase &serial, unsigned int &chars_piped);
-  bool pipeResponse(GenericSerialBase &serial);
+  int readResponseIntoBuffer(char response_buffer[], unsigned int buffer_size);
+  bool pipeResponse(Stream &stream, unsigned int &chars_piped);
+  bool pipeResponse(Stream &stream);
   bool pipeResponse(JsonStream &json_stream, unsigned int &chars_piped);
   bool pipeResponse(JsonStream &json_stream);
   // ArduinoJson::JsonObject& sendRequestGetResponse(char response[STRING_LENGTH_RESPONSE], ArduinoJson::StaticJsonBuffer<JSON_BUFFER_SIZE>& buffer);
 private:
-  GenericSerialBase* client_serial_ptr_;
+  Stream* client_stream_ptr_;
   JsonStream json_stream_;
   unsigned int timeout_;
 };

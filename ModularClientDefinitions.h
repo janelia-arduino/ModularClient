@@ -13,13 +13,13 @@ template<typename T>
 void ModularClient::beginRequest(const T method)
 {
   json_stream_.beginArray();
-  json_stream_.add(method);
+  json_stream_.write(method);
 }
 
 template<typename T>
 void ModularClient::addParameter(const T parameter)
 {
-  json_stream_.add(parameter);
+  json_stream_.write(parameter);
 }
 
 #endif

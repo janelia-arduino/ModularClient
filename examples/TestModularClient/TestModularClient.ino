@@ -6,14 +6,12 @@
 #include "JsonStream.h"
 #include "Array.h"
 #include "ConstantVariable.h"
-#include "GenericSerial.h"
 #include "ModularClient.h"
 
 
 const int BAUDRATE = 9600;
-GenericSerial generic_serial(Serial);
-GenericSerial1to3 generic_serial2(Serial2);
-ModularClient modular_client(generic_serial2);
+ModularClient modular_client(Serial2);
+const unsigned char serial2_rx_pin = 17;
 
 void getLedPin()
 {
@@ -22,8 +20,8 @@ void getLedPin()
 
   modular_client.beginRequest("getLedPin");
   modular_client.endRequest();
-  bool found_eol = modular_client.getResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
-  Serial << "getLedPin found_eol = " << found_eol << "\n";
+  int bytes_read = modular_client.readResponseIntoBuffer(response,ModularClient::STRING_LENGTH_RESPONSE);
+  Serial << "getLedPin bytes_read = " << bytes_read << "\n";
   Serial << "response: " << "\n" << response << "\n";
 }
 
@@ -34,8 +32,8 @@ void help()
 
   modular_client.beginRequest("?");
   modular_client.endRequest();
-  bool found_eol = modular_client.getResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
-  Serial << "help found_eol = " << found_eol << "\n";
+  int bytes_read = modular_client.readResponseIntoBuffer(response,ModularClient::STRING_LENGTH_RESPONSE);
+  Serial << "help bytes_read = " << bytes_read << "\n";
   Serial << "response: " << "\n" << response << "\n";
 }
 
@@ -48,12 +46,10 @@ void verboseHelp()
   modular_client.endRequest();
   Serial << "verboseHelp: " << "\n";
   unsigned int chars_piped;
-  bool found_eol = modular_client.pipeResponse(generic_serial,chars_piped);
-  // bool found_eol = modular_client.getResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
+  bool found_eol = modular_client.pipeResponse(Serial,chars_piped);
   Serial << "\n";
   Serial << "verboseHelp found_eol = " << found_eol << "\n";
   Serial << "verboseHelp chars_piped = " << chars_piped << "\n";
-  // Serial << "response: " << "\n" << response << "\n";
 }
 
 void blinkLed()
@@ -68,15 +64,17 @@ void blinkLed()
   modular_client.addParameter(0.5);
   modular_client.addParameter(10);
   modular_client.endRequest();
-  bool found_eol = modular_client.getResponse(response,ModularClient::STRING_LENGTH_RESPONSE);
-  Serial << "blinkLed found_eol = " << found_eol << "\n";
+  int bytes_read = modular_client.readResponseIntoBuffer(response,ModularClient::STRING_LENGTH_RESPONSE);
+  Serial << "blinkLed bytes_read = " << bytes_read << "\n";
   Serial << "response: " << "\n" << response << "\n";
 }
 
 void setup()
 {
-  generic_serial.begin(BAUDRATE);
-  generic_serial2.begin(BAUDRATE);
+  Serial.begin(BAUDRATE);
+  Serial2.begin(BAUDRATE);
+  pinMode(serial2_rx_pin,INPUT);
+  digitalWrite(serial2_rx_pin,HIGH);
 }
 
 void loop()
