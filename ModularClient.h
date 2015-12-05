@@ -26,13 +26,10 @@ public:
   void addParameter(const T parameter);
   void endRequest();
   int readResponseIntoBuffer(char response_buffer[], unsigned int buffer_size);
-  bool pipeResponse(Stream &stream, unsigned int &chars_piped);
-  bool pipeResponse(Stream &stream);
-  bool pipeResponse(JsonStream &json_stream, unsigned int &chars_piped);
-  bool pipeResponse(JsonStream &json_stream);
+  int pipeResponse(Stream &stream);
+  int pipeResponse(JsonStream &json_stream);
   // ArduinoJson::JsonObject& sendRequestGetResponse(char response[STRING_LENGTH_RESPONSE], ArduinoJson::StaticJsonBuffer<JSON_BUFFER_SIZE>& buffer);
 private:
-  Stream* client_stream_ptr_;
   JsonStream json_stream_;
   unsigned int timeout_;
 };

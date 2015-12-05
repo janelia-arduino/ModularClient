@@ -39,16 +39,10 @@ void help()
 
 void verboseHelp()
 {
-  char response[ModularClient::STRING_LENGTH_RESPONSE];
-  StaticJsonBuffer<ModularClient::JSON_BUFFER_SIZE> json_buffer;
-
   modular_client.beginRequest("??");
   modular_client.endRequest();
   Serial << "verboseHelp: " << "\n";
-  unsigned int chars_piped;
-  bool found_eol = modular_client.pipeResponse(Serial,chars_piped);
-  Serial << "\n";
-  Serial << "verboseHelp found_eol = " << found_eol << "\n";
+  int chars_piped = modular_client.pipeResponse(Serial);
   Serial << "verboseHelp chars_piped = " << chars_piped << "\n";
 }
 

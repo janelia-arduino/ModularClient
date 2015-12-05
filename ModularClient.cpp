@@ -11,7 +11,6 @@
 ModularClient::ModularClient(Stream &stream) :
   json_stream_(stream)
 {
-  client_stream_ptr_ = &stream;
   timeout_ = TIMEOUT_DEFAULT;
 }
 
@@ -26,64 +25,37 @@ int ModularClient::readResponseIntoBuffer(char response_buffer[], unsigned int b
   return json_stream_.readJsonIntoBuffer(response_buffer,buffer_size);
 }
 
-bool ModularClient::pipeResponse(Stream &stream, unsigned int &chars_piped)
+int ModularClient::pipeResponse(Stream &stream)
+{
+  JsonStream json_stream(stream);
+  return pipeResponse(json_stream);
+}
+
+int ModularClient::pipeResponse(JsonStream &json_stream)
 {
   bool found_eol = false;
-  int c;
+  char c;
   unsigned long start_millis = millis();
-  chars_piped = 0;
+  int chars_piped = 0;
   while (!found_eol && ((millis() - start_millis) < timeout_))
   {
-    c = client_stream_ptr_->read();
+    c = json_stream_.readChar();
     if (c >= 0)
     {
-      if ((char)c != JsonStream::EOL)
-      {
-        stream << (char)c;
-        chars_piped++;
-      }
-      else
+      json_stream.writeChar(c);
+      chars_piped++;
+      if (c == JsonStream::EOL)
       {
         found_eol = true;
       }
     }
   }
-  return found_eol;
-}
-
-bool ModularClient::pipeResponse(Stream &stream)
-{
-  unsigned int chars_piped;
-  return pipeResponse(stream,chars_piped);
-}
-
-bool ModularClient::pipeResponse(JsonStream &json_stream, unsigned int &chars_piped)
-{
-  bool found_eol = false;
-  int c;
-  unsigned long start_millis = millis();
-  chars_piped = 0;
-  while (!found_eol && ((millis() - start_millis) < timeout_))
+  if (found_eol)
   {
-    c = client_stream_ptr_->read();
-    if (c >= 0)
-    {
-      if ((char)c != JsonStream::EOL)
-      {
-        json_stream.writeChar(c);
-        chars_piped++;
-      }
-      else
-      {
-        found_eol = true;
-      }
-    }
+    return chars_piped;
   }
-  return found_eol;
-}
-
-bool ModularClient::pipeResponse(JsonStream &json_stream)
-{
-  unsigned int chars_piped;
-  return pipeResponse(json_stream,chars_piped);
+  else
+  {
+    return -1;
+  }
 }
