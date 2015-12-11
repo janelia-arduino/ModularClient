@@ -1,4 +1,4 @@
-// LedControllerClient
+// LedController Client
 #include "Flash.h"
 #include <EEPROM.h>
 #include "Streaming.h"
@@ -6,11 +6,11 @@
 #include "JsonStream.h"
 #include "Array.h"
 #include "ConstantVariable.h"
-#include "ModularClient.h"
+#include "ModularDevice.h"
 
 
 const int BAUDRATE = 9600;
-ModularClient modular_client(Serial2);
+ModularDevice dev(Serial2);
 const unsigned char serial2_rx_pin = 17;
 
 void setup()
@@ -23,7 +23,7 @@ void setup()
 
 void checkCall(const char method[])
 {
-  if (modular_client.callWasSuccessful())
+  if (dev.callWasSuccessful())
   {
     Serial << method << " success!" << "\n";
   }
@@ -36,24 +36,27 @@ void checkCall(const char method[])
 
 void loop()
 {
-  long led_pin = modular_client.callServerMethod("getLedPin");
-  checkCall("getLedPin");
-  if (modular_client.callWasSuccessful())
-  {
-    Serial << "led_pin = " << led_pin << "\n";
-    Serial << "\n";
-  }
-  delay(1000);
-
-  modular_client.callServerMethod("setLedOn");
+  dev.callServerMethod("setLedOn");
   checkCall("setLedOn");
   delay(1000);
 
-  modular_client.callServerMethod("setLedOff");
+  dev.callServerMethod("setLedOff");
   checkCall("setLedOff");
   delay(1000);
 
-  modular_client.callServerMethod("blinkLed",0.5,0.5,10);
+  long led_pin = dev.callServerMethod("getLedPin");
+  checkCall("getLedPin");
+  if (dev.callWasSuccessful())
+  {
+    Serial << "led_pin = " << led_pin << "\n\n";
+  }
+  delay(1000);
+
+  dev.callServerMethod("badMethod",true,0.5,false);
+  checkCall("badMethod");
+  delay(1000);
+
+  dev.callServerMethod("blinkLed",0.5,0.5,10);
   checkCall("blinkLed");
   delay(10000);
 

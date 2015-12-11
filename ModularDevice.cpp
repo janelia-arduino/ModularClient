@@ -1,33 +1,34 @@
 // ----------------------------------------------------------------------------
-// ModularClient.cpp
+// ModularDevice.cpp
 //
 //
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#include "ModularClient.h"
+#include "ModularDevice.h"
 
 
-ModularClient::ModularClient(Stream &stream) :
-  json_stream_(stream)
+ModularDevice::ModularDevice(Stream &stream) :
+  json_stream_(stream),
+  debug_json_stream_(Serial)
 {
   timeout_ = TIMEOUT_DEFAULT;
   call_successful_ = false;
   response_byte_count_ = 0;
 }
 
-int ModularClient::readResponseIntoBuffer(char response_buffer[], unsigned int buffer_size)
+int ModularDevice::readResponseIntoBuffer(char response_buffer[], unsigned int buffer_size)
 {
   return json_stream_.readJsonIntoBuffer(response_buffer,buffer_size);
 }
 
-int ModularClient::pipeResponse(Stream &stream)
+int ModularDevice::pipeResponse(Stream &stream)
 {
   JsonStream json_stream(stream);
   return pipeResponse(json_stream);
 }
 
-int ModularClient::pipeResponse(JsonStream &json_stream)
+int ModularDevice::pipeResponse(JsonStream &json_stream)
 {
   bool found_eol = false;
   char c;
@@ -56,27 +57,32 @@ int ModularClient::pipeResponse(JsonStream &json_stream)
   }
 }
 
-void ModularClient::endRequest()
+void ModularDevice::endRequest()
 {
   json_stream_.endArray();
   json_stream_.writeNewline();
+  debug_json_stream_.endArray();
+  debug_json_stream_.writeNewline();
 }
 
-ArduinoJson::JsonVariant ModularClient::processResponse()
+ArduinoJson::JsonVariant ModularDevice::processResponse()
 {
   response_byte_count_ = readResponseIntoBuffer(response_,STRING_LENGTH_RESPONSE);
+  Serial << "response_byte_count: " << response_byte_count_ << "\n";
+  debug_json_stream_.writeJson(response_);
+  debug_json_stream_.writeNewline();
   StaticJsonBuffer<JSON_BUFFER_SIZE> json_buffer;
   ArduinoJson::JsonObject& root = json_buffer.parseObject(response_);
   call_successful_ = root["status"];
   return root["result"];
 }
 
-bool ModularClient::callWasSuccessful()
+bool ModularDevice::callWasSuccessful()
 {
   return call_successful_;
 }
 
-int ModularClient::getResponseByteCount()
+int ModularDevice::getResponseByteCount()
 {
   return response_byte_count_;
 }

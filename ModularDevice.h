@@ -1,25 +1,25 @@
 // ----------------------------------------------------------------------------
-// ModularClient.h
+// ModularDevice.h
 //
 //
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#ifndef MODULAR_CLIENT_H
-#define MODULAR_CLIENT_H
+#ifndef MODULAR_DEVICE_H
+#define MODULAR_DEVICE_H
 #include "Arduino.h"
 #include "ArduinoJson.h"
 #include "JsonStream.h"
 
 
-class ModularClient
+class ModularDevice
 {
 public:
   static const unsigned int STRING_LENGTH_RESPONSE=257;
   static const unsigned int JSON_BUFFER_SIZE=200;
   static const unsigned int TIMEOUT_DEFAULT=1000;
 
-  ModularClient(Stream &stream);
+  ModularDevice(Stream &stream);
   template<typename T>
   ArduinoJson::JsonVariant callServerMethod(const T method);
   template<typename T,
@@ -127,8 +127,9 @@ private:
   bool call_successful_;
   int response_byte_count_;
   JsonStream json_stream_;
+  JsonStream debug_json_stream_;
   unsigned int timeout_;
 };
-#include "ModularClientDefinitions.h"
+#include "ModularDeviceDefinitions.h"
 
 #endif
