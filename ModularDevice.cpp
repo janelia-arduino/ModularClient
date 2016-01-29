@@ -73,7 +73,7 @@ ArduinoJson::JsonVariant ModularDevice::processResponse()
   debug_json_stream_.writeNewline();
   StaticJsonBuffer<JSON_BUFFER_SIZE> json_buffer;
   ArduinoJson::JsonObject& root = json_buffer.parseObject(response_);
-  call_successful_ = root["status"];
+  call_successful_  = (root.containsKey("error") ? false : true);
   return root["result"];
 }
 
