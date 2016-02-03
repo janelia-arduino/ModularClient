@@ -1,6 +1,6 @@
 {
   "device_info":{
-    "name":"led_controller",
+    "name":"board_led_controller",
     "model_number":1001,
     "serial_number":0,
     "firmware_version":{
