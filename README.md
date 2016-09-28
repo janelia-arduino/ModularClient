@@ -1,4 +1,4 @@
-#ModularDevice
+#ModularClient
 
 Authors:
 

@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// ModularDevice.h
+// ModularClient.h
 //
 //
 // Authors:
@@ -12,14 +12,14 @@
 #include "JsonStream.h"
 
 
-class ModularDevice
+class ModularClient
 {
 public:
   static const unsigned int STRING_LENGTH_RESPONSE=257;
   static const unsigned int JSON_BUFFER_SIZE=200;
   static const unsigned int TIMEOUT_DEFAULT=1000;
 
-  ModularDevice(Stream &stream);
+  ModularClient(Stream &stream);
   template<typename T>
   ArduinoJson::JsonVariant callServerMethod(const T method);
   template<typename T,
@@ -130,6 +130,6 @@ private:
   JsonStream debug_json_stream_;
   unsigned int timeout_;
 };
-#include "ModularDeviceDefinitions.h"
+#include "ModularClientDefinitions.h"
 
 #endif

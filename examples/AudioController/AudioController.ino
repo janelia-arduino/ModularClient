@@ -6,11 +6,11 @@
 #include "JsonStream.h"
 #include "Array.h"
 #include "ConstantVariable.h"
-#include "ModularDevice.h"
+#include "ModularClient.h"
 
 
 const int BAUDRATE = 9600;
-ModularDevice dev(Serial2);
+ModularClient dev(Serial2);
 const unsigned char serial2_rx_pin = 17;
 
 void setup()

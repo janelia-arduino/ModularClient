@@ -1,14 +1,14 @@
 // ----------------------------------------------------------------------------
-// ModularDevice.cpp
+// ModularClient.cpp
 //
 //
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#include "ModularDevice.h"
+#include "ModularClient.h"
 
 
-ModularDevice::ModularDevice(Stream &stream) :
+ModularClient::ModularClient(Stream &stream) :
   json_stream_(stream),
   debug_json_stream_(Serial)
 {
@@ -17,18 +17,18 @@ ModularDevice::ModularDevice(Stream &stream) :
   response_byte_count_ = 0;
 }
 
-int ModularDevice::readResponseIntoBuffer(char response_buffer[], unsigned int buffer_size)
+int ModularClient::readResponseIntoBuffer(char response_buffer[], unsigned int buffer_size)
 {
   return json_stream_.readJsonIntoBuffer(response_buffer,buffer_size);
 }
 
-int ModularDevice::pipeResponse(Stream &stream)
+int ModularClient::pipeResponse(Stream &stream)
 {
   JsonStream json_stream(stream);
   return pipeResponse(json_stream);
 }
 
-int ModularDevice::pipeResponse(JsonStream &json_stream)
+int ModularClient::pipeResponse(JsonStream &json_stream)
 {
   bool found_eol = false;
   char c;
@@ -57,7 +57,7 @@ int ModularDevice::pipeResponse(JsonStream &json_stream)
   }
 }
 
-void ModularDevice::endRequest()
+void ModularClient::endRequest()
 {
   json_stream_.endArray();
   json_stream_.writeNewline();
@@ -65,7 +65,7 @@ void ModularDevice::endRequest()
   debug_json_stream_.writeNewline();
 }
 
-ArduinoJson::JsonVariant ModularDevice::processResponse()
+ArduinoJson::JsonVariant ModularClient::processResponse()
 {
   response_byte_count_ = readResponseIntoBuffer(response_,STRING_LENGTH_RESPONSE);
   Serial << "response_byte_count: " << response_byte_count_ << "\n";
@@ -77,12 +77,12 @@ ArduinoJson::JsonVariant ModularDevice::processResponse()
   return root["result"];
 }
 
-bool ModularDevice::callWasSuccessful()
+bool ModularClient::callWasSuccessful()
 {
   return call_successful_;
 }
 
-int ModularDevice::getResponseByteCount()
+int ModularClient::getResponseByteCount()
 {
   return response_byte_count_;
 }

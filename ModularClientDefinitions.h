@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// ModularDeviceDefinitions.h
+// ModularClientDefinitions.h
 //
 //
 // Authors:
@@ -10,7 +10,7 @@
 
 
 template<typename T>
-void ModularDevice::beginRequest(const T method)
+void ModularClient::beginRequest(const T method)
 {
   json_stream_.beginArray();
   json_stream_.write(method);
@@ -19,14 +19,14 @@ void ModularDevice::beginRequest(const T method)
 }
 
 template<typename T>
-void ModularDevice::addParameter(const T parameter)
+void ModularClient::addParameter(const T parameter)
 {
   json_stream_.write(parameter);
   debug_json_stream_.write(parameter);
 }
 
 template<typename T>
-ArduinoJson::JsonVariant ModularDevice::callServerMethod(const T method)
+ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method)
 {
   beginRequest(method);
   endRequest();
@@ -35,7 +35,7 @@ ArduinoJson::JsonVariant ModularDevice::callServerMethod(const T method)
 
 template<typename T,
          typename A>
-ArduinoJson::JsonVariant ModularDevice::callServerMethod(const T method,
+ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
                                                          const A parameter0)
 {
   beginRequest(method);
@@ -47,7 +47,7 @@ ArduinoJson::JsonVariant ModularDevice::callServerMethod(const T method,
 template<typename T,
          typename A,
          typename B>
-ArduinoJson::JsonVariant ModularDevice::callServerMethod(const T method,
+ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
                                                          const A parameter0,
                                                          const B parameter1)
 {
@@ -62,7 +62,7 @@ template<typename T,
          typename A,
          typename B,
          typename C>
-ArduinoJson::JsonVariant ModularDevice::callServerMethod(const T method,
+ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
                                                          const A parameter0,
                                                          const B parameter1,
                                                          const C parameter2)
@@ -80,7 +80,7 @@ template<typename T,
          typename B,
          typename C,
          typename D>
-ArduinoJson::JsonVariant ModularDevice::callServerMethod(const T method,
+ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
                                                          const A parameter0,
                                                          const B parameter1,
                                                          const C parameter2,
@@ -101,7 +101,7 @@ template<typename T,
          typename C,
          typename D,
          typename E>
-ArduinoJson::JsonVariant ModularDevice::callServerMethod(const T method,
+ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
                                                          const A parameter0,
                                                          const B parameter1,
                                                          const C parameter2,
@@ -125,7 +125,7 @@ template<typename T,
          typename D,
          typename E,
          typename F>
-ArduinoJson::JsonVariant ModularDevice::callServerMethod(const T method,
+ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
                                                          const A parameter0,
                                                          const B parameter1,
                                                          const C parameter2,
@@ -152,7 +152,7 @@ template<typename T,
          typename E,
          typename F,
          typename G>
-ArduinoJson::JsonVariant ModularDevice::callServerMethod(const T method,
+ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
                                                          const A parameter0,
                                                          const B parameter1,
                                                          const C parameter2,
@@ -182,7 +182,7 @@ template<typename T,
          typename F,
          typename G,
          typename H>
-ArduinoJson::JsonVariant ModularDevice::callServerMethod(const T method,
+ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
                                                          const A parameter0,
                                                          const B parameter1,
                                                          const C parameter2,
