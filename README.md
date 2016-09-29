@@ -15,5 +15,8 @@ servers.
 
 ##More Detailed Modular Device Information
 
-<https://github.com/janelia-modular-devices/modular-devices>
+[modular-devices](https://github.com/janelia-modular-devices/modular-devices)
 
+##Install Library Dependencies
+
+[arduino-libraries](https://github.com/janelia-arduino/arduino-libraries)
