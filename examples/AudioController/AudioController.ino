@@ -1,4 +1,3 @@
-// LedController Client
 #include "Flash.h"
 #include <EEPROM.h>
 #include "Streaming.h"
@@ -9,16 +8,17 @@
 #include "ModularClient.h"
 
 
-const int BAUDRATE = 9600;
-ModularClient dev(Serial2);
-const unsigned char serial2_rx_pin = 17;
+const long BAUDRATE = 115200;
+ModularClient dev(Serial3);
+const size_t serial3_rx_pin = 7;
 
 void setup()
 {
   Serial.begin(BAUDRATE);
-  Serial2.begin(BAUDRATE);
-  pinMode(serial2_rx_pin,INPUT);
-  digitalWrite(serial2_rx_pin,HIGH);
+  Serial3.begin(BAUDRATE);
+  pinMode(serial3_rx_pin,INPUT_PULLUP);
+
+  dev.setDebugStream(Serial);
 }
 
 void checkCall(const char method[])
@@ -36,28 +36,15 @@ void checkCall(const char method[])
 
 void loop()
 {
-  dev.callServerMethod("setLedOn");
-  checkCall("setLedOn");
+  dev.callServerMethod("playTone","4000","ALL");
+  checkCall("playTone");
   delay(1000);
 
-  dev.callServerMethod("setLedOff");
-  checkCall("setLedOff");
+  dev.callServerMethod("playNoise","LEFT");
+  checkCall("playNoise");
   delay(1000);
 
-  long led_pin = dev.callServerMethod("getLedPin");
-  checkCall("getLedPin");
-  if (dev.callWasSuccessful())
-  {
-    Serial << "led_pin = " << led_pin << "\n\n";
-  }
+  dev.callServerMethod("stop");
+  checkCall("stop");
   delay(1000);
-
-  dev.callServerMethod("badMethod",true,0.5,false);
-  checkCall("badMethod");
-  delay(1000);
-
-  dev.callServerMethod("blinkLed",0.5,0.5,10);
-  checkCall("blinkLed");
-  delay(10000);
-
 }

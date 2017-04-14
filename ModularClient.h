@@ -113,7 +113,11 @@ public:
                                             const G parameter6,
                                             const H parameter7);
   bool callWasSuccessful();
+
+  ArduinoJson::JsonVariant sendJsonRequest(ArduinoJson::JsonArray & request_array);
+
   int getResponseByteCount();
+
 private:
   char response_[modular_client::constants::STRING_LENGTH_RESPONSE];
   bool call_successful_;
