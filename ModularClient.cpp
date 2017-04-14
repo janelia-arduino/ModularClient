@@ -8,11 +8,36 @@
 #include "ModularClient.h"
 
 
-ModularClient::ModularClient(Stream &stream) :
-  json_stream_(stream),
-  debug_json_stream_(Serial)
+using namespace modular_client;
+
+ModularClient::ModularClient()
 {
-  timeout_ = TIMEOUT_DEFAULT;
+  initialize();
+}
+
+ModularClient::ModularClient(Stream & stream) :
+  json_stream_(stream)
+{
+  initialize();
+}
+
+void ModularClient::setStream(Stream  & stream)
+{
+  json_stream_.setStream(stream);
+}
+
+void ModularClient::setDebugStream(Stream  & stream)
+{
+  debug_json_stream_.setStream(stream);
+}
+
+void ModularClient::removeDebugStream()
+{
+  debug_json_stream_.removeStream();
+}
+
+void ModularClient::initialize()
+{
   call_successful_ = false;
   response_byte_count_ = 0;
 }
@@ -22,19 +47,19 @@ int ModularClient::readResponseIntoBuffer(char response_buffer[], unsigned int b
   return json_stream_.readJsonIntoBuffer(response_buffer,buffer_size);
 }
 
-int ModularClient::pipeResponse(Stream &stream)
+int ModularClient::pipeResponse(Stream & stream)
 {
   JsonStream json_stream(stream);
   return pipeResponse(json_stream);
 }
 
-int ModularClient::pipeResponse(JsonStream &json_stream)
+int ModularClient::pipeResponse(JsonStream & json_stream)
 {
   bool found_eol = false;
   char c;
   unsigned long start_millis = millis();
   int chars_piped = 0;
-  while (!found_eol && ((millis() - start_millis) < timeout_))
+  while (!found_eol && ((millis() - start_millis) < constants::TIMEOUT_DEFAULT))
   {
     c = json_stream_.readChar();
     if (c >= 0)
@@ -61,18 +86,24 @@ void ModularClient::endRequest()
 {
   json_stream_.endArray();
   json_stream_.writeNewline();
-  debug_json_stream_.endArray();
-  debug_json_stream_.writeNewline();
+  if (debug_json_stream_.streamIsSet())
+  {
+    debug_json_stream_.endArray();
+    debug_json_stream_.writeNewline();
+  }
 }
 
 ArduinoJson::JsonVariant ModularClient::processResponse()
 {
-  response_byte_count_ = readResponseIntoBuffer(response_,STRING_LENGTH_RESPONSE);
+  response_byte_count_ = readResponseIntoBuffer(response_,constants::STRING_LENGTH_RESPONSE);
   Serial << "response_byte_count: " << response_byte_count_ << "\n";
-  debug_json_stream_.writeJson(response_);
-  debug_json_stream_.writeNewline();
-  StaticJsonBuffer<JSON_BUFFER_SIZE> json_buffer;
-  ArduinoJson::JsonObject& root = json_buffer.parseObject(response_);
+  if (debug_json_stream_.streamIsSet())
+  {
+    debug_json_stream_.writeJson(response_);
+    debug_json_stream_.writeNewline();
+  }
+  StaticJsonBuffer<constants::JSON_BUFFER_SIZE> json_buffer;
+  ArduinoJson::JsonObject & root = json_buffer.parseObject(response_);
   call_successful_  = (root.containsKey("result") ? true : false);
   return root["result"];
 }

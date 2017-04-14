@@ -14,15 +14,21 @@ void ModularClient::beginRequest(const T method)
 {
   json_stream_.beginArray();
   json_stream_.write(method);
-  debug_json_stream_.beginArray();
-  debug_json_stream_.write(method);
+  if (debug_json_stream_.streamIsSet())
+  {
+    debug_json_stream_.beginArray();
+    debug_json_stream_.write(method);
+  }
 }
 
 template<typename T>
 void ModularClient::addParameter(const T parameter)
 {
   json_stream_.write(parameter);
-  debug_json_stream_.write(parameter);
+  if (debug_json_stream_.streamIsSet())
+  {
+    debug_json_stream_.write(parameter);
+  }
 }
 
 template<typename T>

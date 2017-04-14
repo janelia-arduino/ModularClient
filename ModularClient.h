@@ -11,15 +11,17 @@
 #include "ArduinoJson.h"
 #include "JsonStream.h"
 
+#include "utility/Constants.h"
+
 
 class ModularClient
 {
 public:
-  static const unsigned int STRING_LENGTH_RESPONSE=257;
-  static const unsigned int JSON_BUFFER_SIZE=200;
-  static const unsigned int TIMEOUT_DEFAULT=1000;
-
-  ModularClient(Stream &stream);
+  ModularClient();
+  ModularClient(Stream & stream);
+  void setStream(Stream & stream);
+  void setDebugStream(Stream & stream);
+  void removeDebugStream();
   template<typename T>
   ArduinoJson::JsonVariant callServerMethod(const T method);
   template<typename T,
@@ -113,22 +115,23 @@ public:
   bool callWasSuccessful();
   int getResponseByteCount();
 private:
+  char response_[modular_client::constants::STRING_LENGTH_RESPONSE];
+  bool call_successful_;
+  int response_byte_count_;
+  JsonStream json_stream_;
+  JsonStream debug_json_stream_;
+
+  void initialize();
   template<typename T>
   void beginRequest(const T method);
   template<typename T>
   void addParameter(const T parameter);
   void endRequest();
   int readResponseIntoBuffer(char response_buffer[], unsigned int buffer_size);
-  int pipeResponse(Stream &stream);
-  int pipeResponse(JsonStream &json_stream);
-  // ArduinoJson::JsonObject& sendRequestGetResponse(char response[STRING_LENGTH_RESPONSE], ArduinoJson::StaticJsonBuffer<JSON_BUFFER_SIZE>& buffer);
+  int pipeResponse(Stream & stream);
+  int pipeResponse(JsonStream & json_stream);
+  // ArduinoJson::JsonObject & sendRequestGetResponse(char response[STRING_LENGTH_RESPONSE], ArduinoJson::StaticJsonBuffer<JSON_BUFFER_SIZE> & buffer);
   ArduinoJson::JsonVariant processResponse();
-  char response_[STRING_LENGTH_RESPONSE];
-  bool call_successful_;
-  int response_byte_count_;
-  JsonStream json_stream_;
-  JsonStream debug_json_stream_;
-  unsigned int timeout_;
 };
 #include "ModularClientDefinitions.h"
 
