@@ -1,24 +1,22 @@
-// StringController Client
-#include "Flash.h"
-#include <EEPROM.h>
-#include "Streaming.h"
+#include "Arduino.h"
 #include "ArduinoJson.h"
 #include "JsonStream.h"
-#include "Array.h"
-#include "ConstantVariable.h"
+
 #include "ModularClient.h"
 
+#include "Streaming.h"
 
-const int BAUDRATE = 9600;
-ModularClient dev(Serial2);
-const unsigned char serial2_rx_pin = 17;
+
+const long BAUDRATE = 115200;
+HardwareSerial & serial = Serial1;
+ModularClient dev(serial);
 
 void setup()
 {
   Serial.begin(BAUDRATE);
-  Serial2.begin(BAUDRATE);
-  pinMode(serial2_rx_pin,INPUT);
-  digitalWrite(serial2_rx_pin,HIGH);
+  serial.begin(BAUDRATE);
+
+  dev.setDebugStream(Serial);
 }
 
 void checkCall(const char method[])
@@ -36,7 +34,7 @@ void checkCall(const char method[])
 
 void loop()
 {
-  const char* echo = dev.callServerMethod("echo","test",false);
+  const char* echo = dev.call("echo","test",false);
   checkCall("echo");
   if (dev.callWasSuccessful())
   {
@@ -44,7 +42,7 @@ void loop()
   }
   delay(1000);
 
-  long length = dev.callServerMethod("length","what is my length?");
+  long length = dev.call("length","what is my length?");
   checkCall("length");
   if (dev.callWasSuccessful())
   {
@@ -52,7 +50,7 @@ void loop()
   }
   delay(1000);
 
-  bool starts_with = dev.callServerMethod("startsWith","testing","te");
+  bool starts_with = dev.call("startsWith","testing","te");
   checkCall("testing");
   if (dev.callWasSuccessful())
   {
@@ -60,7 +58,7 @@ void loop()
   }
   delay(1000);
 
-  ArduinoJson::JsonArray& repeated_string = dev.callServerMethod("repeat","hello",4);
+  ArduinoJson::JsonArray& repeated_string = dev.call("repeat","hello",4);
   checkCall("repeat");
   if (dev.callWasSuccessful())
   {

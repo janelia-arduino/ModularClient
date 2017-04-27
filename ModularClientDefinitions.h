@@ -31,54 +31,234 @@ void ModularClient::addParameter(const T parameter)
   }
 }
 
+// template<typename T>
+// ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method)
+// {
+//   beginRequest(method);
+//   endRequest();
+//   return processResponse();
+// }
+
+// template<typename T,
+//          typename A>
+// ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
+//                                                          const A parameter0)
+// {
+//   beginRequest(method);
+//   addParameter(parameter0);
+//   endRequest();
+//   return processResponse();
+// }
+
+// template<typename T,
+//          typename A,
+//          typename B>
+// ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
+//                                                          const A parameter0,
+//                                                          const B parameter1)
+// {
+//   beginRequest(method);
+//   addParameter(parameter0);
+//   addParameter(parameter1);
+//   endRequest();
+//   return processResponse();
+// }
+
+// template<typename T,
+//          typename A,
+//          typename B,
+//          typename C>
+// ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
+//                                                          const A parameter0,
+//                                                          const B parameter1,
+//                                                          const C parameter2)
+// {
+//   beginRequest(method);
+//   addParameter(parameter0);
+//   addParameter(parameter1);
+//   addParameter(parameter2);
+//   endRequest();
+//   return processResponse();
+// }
+
+// template<typename T,
+//          typename A,
+//          typename B,
+//          typename C,
+//          typename D>
+// ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
+//                                                          const A parameter0,
+//                                                          const B parameter1,
+//                                                          const C parameter2,
+//                                                          const D parameter3)
+// {
+//   beginRequest(method);
+//   addParameter(parameter0);
+//   addParameter(parameter1);
+//   addParameter(parameter2);
+//   addParameter(parameter3);
+//   endRequest();
+//   return processResponse();
+// }
+
+// template<typename T,
+//          typename A,
+//          typename B,
+//          typename C,
+//          typename D,
+//          typename E>
+// ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
+//                                                          const A parameter0,
+//                                                          const B parameter1,
+//                                                          const C parameter2,
+//                                                          const D parameter3,
+//                                                          const E parameter4)
+// {
+//   beginRequest(method);
+//   addParameter(parameter0);
+//   addParameter(parameter1);
+//   addParameter(parameter2);
+//   addParameter(parameter3);
+//   addParameter(parameter4);
+//   endRequest();
+//   return processResponse();
+// }
+
+// template<typename T,
+//          typename A,
+//          typename B,
+//          typename C,
+//          typename D,
+//          typename E,
+//          typename F>
+// ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
+//                                                          const A parameter0,
+//                                                          const B parameter1,
+//                                                          const C parameter2,
+//                                                          const D parameter3,
+//                                                          const E parameter4,
+//                                                          const F parameter5)
+// {
+//   beginRequest(method);
+//   addParameter(parameter0);
+//   addParameter(parameter1);
+//   addParameter(parameter2);
+//   addParameter(parameter3);
+//   addParameter(parameter4);
+//   addParameter(parameter5);
+//   endRequest();
+//   return processResponse();
+// }
+
+// template<typename T,
+//          typename A,
+//          typename B,
+//          typename C,
+//          typename D,
+//          typename E,
+//          typename F,
+//          typename G>
+// ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
+//                                                          const A parameter0,
+//                                                          const B parameter1,
+//                                                          const C parameter2,
+//                                                          const D parameter3,
+//                                                          const E parameter4,
+//                                                          const F parameter5,
+//                                                          const G parameter6)
+// {
+//   beginRequest(method);
+//   addParameter(parameter0);
+//   addParameter(parameter1);
+//   addParameter(parameter2);
+//   addParameter(parameter3);
+//   addParameter(parameter4);
+//   addParameter(parameter5);
+//   addParameter(parameter6);
+//   endRequest();
+//   return processResponse();
+// }
+
+// template<typename T,
+//          typename A,
+//          typename B,
+//          typename C,
+//          typename D,
+//          typename E,
+//          typename F,
+//          typename G,
+//          typename H>
+// ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
+//                                                          const A parameter0,
+//                                                          const B parameter1,
+//                                                          const C parameter2,
+//                                                          const D parameter3,
+//                                                          const E parameter4,
+//                                                          const F parameter5,
+//                                                          const G parameter6,
+//                                                          const H parameter7)
+// {
+//   beginRequest(method);
+//   addParameter(parameter0);
+//   addParameter(parameter1);
+//   addParameter(parameter2);
+//   addParameter(parameter3);
+//   addParameter(parameter4);
+//   addParameter(parameter5);
+//   addParameter(parameter6);
+//   addParameter(parameter7);
+//   endRequest();
+//   return processResponse();
+// }
+
 template<typename T>
-ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method)
+void ModularClient::call(const T method)
 {
   beginRequest(method);
   endRequest();
-  return processResponse();
+  return checkResponse();
 }
 
 template<typename T,
          typename A>
-ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
-                                                         const A parameter0)
+void ModularClient::call(const T method,
+                         const A parameter0)
 {
   beginRequest(method);
   addParameter(parameter0);
   endRequest();
-  return processResponse();
+  return checkResponse();
 }
 
 template<typename T,
          typename A,
          typename B>
-ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
-                                                         const A parameter0,
-                                                         const B parameter1)
+void ModularClient::call(const T method,
+                         const A parameter0,
+                         const B parameter1)
 {
   beginRequest(method);
   addParameter(parameter0);
   addParameter(parameter1);
   endRequest();
-  return processResponse();
+  return checkResponse();
 }
 
 template<typename T,
          typename A,
          typename B,
          typename C>
-ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
-                                                         const A parameter0,
-                                                         const B parameter1,
-                                                         const C parameter2)
+void ModularClient::call(const T method,
+                         const A parameter0,
+                         const B parameter1,
+                         const C parameter2)
 {
   beginRequest(method);
   addParameter(parameter0);
   addParameter(parameter1);
   addParameter(parameter2);
   endRequest();
-  return processResponse();
+  return checkResponse();
 }
 
 template<typename T,
@@ -86,11 +266,11 @@ template<typename T,
          typename B,
          typename C,
          typename D>
-ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
-                                                         const A parameter0,
-                                                         const B parameter1,
-                                                         const C parameter2,
-                                                         const D parameter3)
+void ModularClient::call(const T method,
+                         const A parameter0,
+                         const B parameter1,
+                         const C parameter2,
+                         const D parameter3)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -98,7 +278,7 @@ ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
   addParameter(parameter2);
   addParameter(parameter3);
   endRequest();
-  return processResponse();
+  return checkResponse();
 }
 
 template<typename T,
@@ -107,12 +287,12 @@ template<typename T,
          typename C,
          typename D,
          typename E>
-ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
-                                                         const A parameter0,
-                                                         const B parameter1,
-                                                         const C parameter2,
-                                                         const D parameter3,
-                                                         const E parameter4)
+void ModularClient::call(const T method,
+                         const A parameter0,
+                         const B parameter1,
+                         const C parameter2,
+                         const D parameter3,
+                         const E parameter4)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -121,7 +301,7 @@ ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
   addParameter(parameter3);
   addParameter(parameter4);
   endRequest();
-  return processResponse();
+  return checkResponse();
 }
 
 template<typename T,
@@ -131,13 +311,13 @@ template<typename T,
          typename D,
          typename E,
          typename F>
-ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
-                                                         const A parameter0,
-                                                         const B parameter1,
-                                                         const C parameter2,
-                                                         const D parameter3,
-                                                         const E parameter4,
-                                                         const F parameter5)
+void ModularClient::call(const T method,
+                         const A parameter0,
+                         const B parameter1,
+                         const C parameter2,
+                         const D parameter3,
+                         const E parameter4,
+                         const F parameter5)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -147,7 +327,7 @@ ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
   addParameter(parameter4);
   addParameter(parameter5);
   endRequest();
-  return processResponse();
+  return checkResponse();
 }
 
 template<typename T,
@@ -158,14 +338,14 @@ template<typename T,
          typename E,
          typename F,
          typename G>
-ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
-                                                         const A parameter0,
-                                                         const B parameter1,
-                                                         const C parameter2,
-                                                         const D parameter3,
-                                                         const E parameter4,
-                                                         const F parameter5,
-                                                         const G parameter6)
+void ModularClient::call(const T method,
+                         const A parameter0,
+                         const B parameter1,
+                         const C parameter2,
+                         const D parameter3,
+                         const E parameter4,
+                         const F parameter5,
+                         const G parameter6)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -176,7 +356,7 @@ ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
   addParameter(parameter5);
   addParameter(parameter6);
   endRequest();
-  return processResponse();
+  return checkResponse();
 }
 
 template<typename T,
@@ -188,15 +368,15 @@ template<typename T,
          typename F,
          typename G,
          typename H>
-ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
-                                                         const A parameter0,
-                                                         const B parameter1,
-                                                         const C parameter2,
-                                                         const D parameter3,
-                                                         const E parameter4,
-                                                         const F parameter5,
-                                                         const G parameter6,
-                                                         const H parameter7)
+void ModularClient::call(const T method,
+                         const A parameter0,
+                         const B parameter1,
+                         const C parameter2,
+                         const D parameter3,
+                         const E parameter4,
+                         const F parameter5,
+                         const G parameter6,
+                         const H parameter7)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -208,6 +388,6 @@ ArduinoJson::JsonVariant ModularClient::callServerMethod(const T method,
   addParameter(parameter6);
   addParameter(parameter7);
   endRequest();
-  return processResponse();
+  return checkResponse();
 }
 #endif

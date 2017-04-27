@@ -36,51 +36,61 @@ void ModularClient::removeDebugStream()
   debug_json_stream_.removeStream();
 }
 
+bool ModularClient::callWasSuccessful()
+{
+  return call_successful_;
+}
+
+// int ModularClient::getResponseByteCount()
+// {
+//   return response_byte_count_;
+// }
+
 void ModularClient::initialize()
 {
   call_successful_ = false;
-  response_byte_count_ = 0;
+  // response_byte_count_ = 0;
 }
 
-int ModularClient::readResponseIntoBuffer(char response_buffer[], unsigned int buffer_size)
-{
-  return json_stream_.readJsonIntoBuffer(response_buffer,buffer_size);
-}
+// int ModularClient::readResponseIntoBuffer(char response_buffer[], unsigned int buffer_size)
+// {
+//   return json_stream_.readJsonIntoBuffer(response_buffer,buffer_size);
+// }
 
-int ModularClient::pipeResponse(Stream & stream)
-{
-  JsonStream json_stream(stream);
-  return pipeResponse(json_stream);
-}
+// int ModularClient::pipeResponse(Stream & stream)
+// {
+//   JsonStream json_stream(stream);
+//   return pipeResponse(json_stream);
+// }
 
-int ModularClient::pipeResponse(JsonStream & json_stream)
-{
-  bool found_eol = false;
-  char c;
-  unsigned long start_millis = millis();
-  int chars_piped = 0;
-  while (!found_eol && ((millis() - start_millis) < constants::TIMEOUT_DEFAULT))
-  {
-    c = json_stream_.readChar();
-    if (c >= 0)
-    {
-      json_stream.writeChar(c);
-      chars_piped++;
-      if (c == JsonStream::EOL)
-      {
-        found_eol = true;
-      }
-    }
-  }
-  if (found_eol)
-  {
-    return chars_piped;
-  }
-  else
-  {
-    return -1;
-  }
-}
+// int ModularClient::pipeResponse(JsonStream & json_stream)
+// {
+//   bool found_eol = false;
+//   char c;
+//   unsigned long start_millis = millis();
+//   int chars_piped = 0;
+//   while (!found_eol && ((millis() - start_millis) < constants::TIMEOUT_DEFAULT))
+//   {
+//     c = json_stream_.readChar();
+//     if (c >= 0)
+//     {
+//       json_stream.writeChar(c);
+//       chars_piped++;
+//       if (c == JsonStream::EOL)
+//       {
+//         found_eol = true;
+//       }
+//     }
+//   }
+//   if (found_eol)
+//   {
+//     return chars_piped;
+//   }
+//   else
+//   {
+//     return -1;
+//   }
+// }
 
 void ModularClient::endRequest()
 {
@@ -95,25 +105,21 @@ void ModularClient::endRequest()
 
 ArduinoJson::JsonVariant ModularClient::processResponse()
 {
-  response_byte_count_ = readResponseIntoBuffer(response_,constants::STRING_LENGTH_RESPONSE);
-  Serial << "response_byte_count: " << response_byte_count_ << "\n";
-  if (debug_json_stream_.streamIsSet())
-  {
-    debug_json_stream_.writeJson(response_);
-    debug_json_stream_.writeNewline();
-  }
-  StaticJsonBuffer<constants::JSON_BUFFER_SIZE> json_buffer;
-  ArduinoJson::JsonObject & root = json_buffer.parseObject(response_);
-  call_successful_  = (root.containsKey("result") ? true : false);
-  return root["result"];
+  // response_byte_count_ = json_stream_.readJsonIntoBuffer(response_buffer,buffer_size);
+  // response_byte_count_ = readResponseIntoBuffer(response_,constants::STRING_LENGTH_RESPONSE);
+  // Serial << "response_byte_count: " << response_byte_count_ << "\n";
+  // if (debug_json_stream_.streamIsSet())
+  // {
+  //   debug_json_stream_.writeJson(response_);
+  //   debug_json_stream_.writeNewline();
+  // }
+  // StaticJsonBuffer<constants::JSON_BUFFER_SIZE> json_buffer;
+  // ArduinoJson::JsonObject & root = json_buffer.parseObject(response_);
+  // call_successful_  = (root.containsKey("result") ? true : false);
+  // return root["result"];
 }
 
-bool ModularClient::callWasSuccessful()
+void ModularClient::checkResponse()
 {
-  return call_successful_;
-}
-
-int ModularClient::getResponseByteCount()
-{
-  return response_byte_count_;
+  call_successful_ = json_stream_.readJsonAndFind(constants::result_key_str);
 }

@@ -12,5 +12,6 @@ namespace modular_client
 {
 namespace constants
 {
+const char result_key_str[] = "\"result\":";
 }
 }
