@@ -8,6 +8,10 @@
 #ifndef MODULAR_DEVICE_H
 #define MODULAR_DEVICE_H
 #include "Arduino.h"
+#include "Streaming.h"
+#include "Array.h"
+#include "Vector.h"
+#include "ConstantVariable.h"
 #include "ArduinoJson.h"
 #include "JsonStream.h"
 
@@ -19,99 +23,12 @@ class ModularClient
 public:
   ModularClient();
   ModularClient(Stream & stream);
+
   void setStream(Stream & stream);
+  void removeStream();
   void setDebugStream(Stream & stream);
   void removeDebugStream();
-  // template<typename T>
-  // ArduinoJson::JsonVariant callServerMethod(const T method);
-  // template<typename T,
-  //          typename A>
-  // ArduinoJson::JsonVariant callServerMethod(const T method,
-  //                                           const A parameter0);
-  // template<typename T,
-  //          typename A,
-  //          typename B>
-  // ArduinoJson::JsonVariant callServerMethod(const T method,
-  //                                           const A parameter0,
-  //                                           const B parameter1);
-  // template<typename T,
-  //          typename A,
-  //          typename B,
-  //          typename C>
-  // ArduinoJson::JsonVariant callServerMethod(const T method,
-  //                                           const A parameter0,
-  //                                           const B parameter1,
-  //                                           const C parameter2);
-  // template<typename T,
-  //          typename A,
-  //          typename B,
-  //          typename C,
-  //          typename D>
-  // ArduinoJson::JsonVariant callServerMethod(const T method,
-  //                                           const A parameter0,
-  //                                           const B parameter1,
-  //                                           const C parameter2,
-  //                                           const D parameter3);
-  // template<typename T,
-  //          typename A,
-  //          typename B,
-  //          typename C,
-  //          typename D,
-  //          typename E>
-  // ArduinoJson::JsonVariant callServerMethod(const T method,
-  //                                           const A parameter0,
-  //                                           const B parameter1,
-  //                                           const C parameter2,
-  //                                           const D parameter3,
-  //                                           const E parameter4);
-  // template<typename T,
-  //          typename A,
-  //          typename B,
-  //          typename C,
-  //          typename D,
-  //          typename E,
-  //          typename F>
-  // ArduinoJson::JsonVariant callServerMethod(const T method,
-  //                                           const A parameter0,
-  //                                           const B parameter1,
-  //                                           const C parameter2,
-  //                                           const D parameter3,
-  //                                           const E parameter4,
-  //                                           const F parameter5);
-  // template<typename T,
-  //          typename A,
-  //          typename B,
-  //          typename C,
-  //          typename D,
-  //          typename E,
-  //          typename F,
-  //          typename G>
-  // ArduinoJson::JsonVariant callServerMethod(const T method,
-  //                                           const A parameter0,
-  //                                           const B parameter1,
-  //                                           const C parameter2,
-  //                                           const D parameter3,
-  //                                           const E parameter4,
-  //                                           const F parameter5,
-  //                                           const G parameter6);
-  // template<typename T,
-  //          typename A,
-  //          typename B,
-  //          typename C,
-  //          typename D,
-  //          typename E,
-  //          typename F,
-  //          typename G,
-  //          typename H>
-  // ArduinoJson::JsonVariant callServerMethod(const T method,
-  //                                           const A parameter0,
-  //                                           const B parameter1,
-  //                                           const C parameter2,
-  //                                           const D parameter3,
-  //                                           const E parameter4,
-  //                                           const F parameter5,
-  //                                           const G parameter6,
-  //                                           const H parameter7);
+
   template<typename T>
   void call(const T method);
   template<typename T,
@@ -202,11 +119,119 @@ public:
             const F parameter5,
             const G parameter6,
             const H parameter7);
+
+  template<size_t N,
+           typename T>
+  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+                                         const T method);
+  template<size_t N,
+           typename T,
+           typename A>
+  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+                                         const T method,
+                                         const A parameter0);
+  template<size_t N,
+           typename T,
+           typename A,
+           typename B>
+  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+                                         const T method,
+                                         const A parameter0,
+                                         const B parameter1);
+  template<size_t N,
+           typename T,
+           typename A,
+           typename B,
+           typename C>
+  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+                                         const T method,
+                                         const A parameter0,
+                                         const B parameter1,
+                                         const C parameter2);
+  template<size_t N,
+           typename T,
+           typename A,
+           typename B,
+           typename C,
+           typename D>
+  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+                                         const T method,
+                                         const A parameter0,
+                                         const B parameter1,
+                                         const C parameter2,
+                                         const D parameter3);
+  template<size_t N,
+           typename T,
+           typename A,
+           typename B,
+           typename C,
+           typename D,
+           typename E>
+  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+                                         const T method,
+                                         const A parameter0,
+                                         const B parameter1,
+                                         const C parameter2,
+                                         const D parameter3,
+                                         const E parameter4);
+  template<size_t N,
+           typename T,
+           typename A,
+           typename B,
+           typename C,
+           typename D,
+           typename E,
+           typename F>
+  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+                                         const T method,
+                                         const A parameter0,
+                                         const B parameter1,
+                                         const C parameter2,
+                                         const D parameter3,
+                                         const E parameter4,
+                                         const F parameter5);
+  template<size_t N,
+           typename T,
+           typename A,
+           typename B,
+           typename C,
+           typename D,
+           typename E,
+           typename F,
+           typename G>
+  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+                                         const T method,
+                                         const A parameter0,
+                                         const B parameter1,
+                                         const C parameter2,
+                                         const D parameter3,
+                                         const E parameter4,
+                                         const F parameter5,
+                                         const G parameter6);
+  template<size_t N,
+           typename T,
+           typename A,
+           typename B,
+           typename C,
+           typename D,
+           typename E,
+           typename F,
+           typename G,
+           typename H>
+  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+                                         const T method,
+                                         const A parameter0,
+                                         const B parameter1,
+                                         const C parameter2,
+                                         const D parameter3,
+                                         const E parameter4,
+                                         const F parameter5,
+                                         const G parameter6,
+                                         const H parameter7);
+
   bool callWasSuccessful();
 
   // ArduinoJson::JsonVariant sendJsonRequest(ArduinoJson::JsonArray & request_array);
-
-  // int getResponseByteCount();
 
 private:
   bool call_successful_;
@@ -219,11 +244,9 @@ private:
   template<typename T>
   void addParameter(const T parameter);
   void endRequest();
-  // int readResponseIntoBuffer(char response_buffer[], unsigned int buffer_size);
-  // int pipeResponse(Stream & stream);
-  // int pipeResponse(JsonStream & json_stream);
   // ArduinoJson::JsonObject & sendRequestGetResponse(char response[STRING_LENGTH_RESPONSE], ArduinoJson::StaticJsonBuffer<JSON_BUFFER_SIZE> & buffer);
-  ArduinoJson::JsonVariant processResponse();
+  template<size_t N>
+  ArduinoJson::JsonVariant processResponse(StaticJsonBuffer<N> & json_buffer);
   void checkResponse();
 };
 #include "ModularClientDefinitions.h"

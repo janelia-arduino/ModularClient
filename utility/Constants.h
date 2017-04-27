@@ -7,12 +7,14 @@
 // ----------------------------------------------------------------------------
 #ifndef MODULAR_CLIENT_CONSTANTS_H
 #define MODULAR_CLIENT_CONSTANTS_H
+#include "ConstantVariable.h"
+
 
 namespace modular_client
 {
 namespace constants
 {
-extern const char result_key_str[];
+extern ConstantString result_key_string;
 }
 }
 #endif

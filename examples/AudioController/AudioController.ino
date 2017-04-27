@@ -1,10 +1,12 @@
 #include "Arduino.h"
+#include "Streaming.h"
+#include "Array.h"
+#include "Vector.h"
+#include "ConstantVariable.h"
 #include "ArduinoJson.h"
 #include "JsonStream.h"
 
 #include "ModularClient.h"
-
-#include "Streaming.h"
 
 
 const long BAUDRATE = 115200;
@@ -49,4 +51,17 @@ void loop()
   dev.call("badMethod");
   checkCall("badMethod");
   delay(1000);
+
+  StaticJsonBuffer<80> json_buffer;
+  double result = dev.callGetResult(json_buffer,"volume");
+  if (dev.callWasSuccessful())
+  {
+    Serial << "volume: " << result << "\n\n";
+  }
+  else
+  {
+    Serial << "? not successful!\n\n";
+  }
+  delay(1000);
+
 }
