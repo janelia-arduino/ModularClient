@@ -53,10 +53,23 @@ void loop()
   delay(1000);
 
   StaticJsonBuffer<80> json_buffer;
-  double result = dev.callGetResult(json_buffer,"volume");
+  double volume = dev.callGetResult(json_buffer,"volume");
   if (dev.callWasSuccessful())
   {
-    Serial << "volume: " << result << "\n\n";
+    Serial << "volume: " << volume << "\n\n";
+  }
+  else
+  {
+    Serial << "? not successful!\n\n";
+  }
+  delay(1000);
+
+  StaticJsonBuffer<256> json_buffer2;
+  JsonObject & device_id = dev.callGetResult(json_buffer2,"getDeviceId");
+  const char * device_name = device_id["name"];
+  if (dev.callWasSuccessful())
+  {
+    Serial << "device_name: " << device_name << "\n\n";
   }
   else
   {
