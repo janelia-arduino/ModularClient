@@ -13,10 +13,26 @@ template<typename T>
 void ModularClient::beginRequest(const T method)
 {
   call_successful_ = false;
+
+  if (address_.size() > 0)
+  {
+    json_stream_.beginArray();
+    json_stream_.write(modular_client::constants::forward_to_address_function_name);
+    json_stream_.write(address_);
+  }
+
   json_stream_.beginArray();
   json_stream_.write(method);
+
   if (debug_json_stream_.streamIsSet())
   {
+    if (address_.size() > 0)
+    {
+      debug_json_stream_.beginArray();
+      debug_json_stream_.write(modular_client::constants::forward_to_address_function_name);
+      debug_json_stream_.write(address_);
+    }
+
     debug_json_stream_.beginArray();
     debug_json_stream_.write(method);
   }
@@ -408,6 +424,29 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
   addParameter(parameter7);
   endRequest();
   return processResponse(json_buffer);
+}
+
+template<typename T>
+void ModularClient::setAddress(T & address_array)
+{
+  if (address_array.size() <= address_.max_size())
+  {
+    removeAddress();
+    for (size_t index=0; index<address_array.size(); ++index)
+    {
+      address_.push_back(address_array[index]);
+    }
+  }
+}
+
+template<typename T, size_t N>
+void ModularClient::setAddress(const T (&address_array)[N])
+{
+  if (N <= address_.max_size())
+  {
+    removeAddress();
+    address_.fill(address_array);
+  }
 }
 
 template<size_t N>

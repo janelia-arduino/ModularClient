@@ -46,6 +46,11 @@ bool ModularClient::callWasSuccessful()
   return call_successful_;
 }
 
+void ModularClient::removeAddress()
+{
+  address_.clear();
+}
+
 void ModularClient::initialize()
 {
   call_successful_ = false;
@@ -54,10 +59,23 @@ void ModularClient::initialize()
 void ModularClient::endRequest()
 {
   json_stream_.endArray();
+
+  if (address_.size() > 0)
+  {
+    json_stream_.endArray();
+  }
+
   json_stream_.writeNewline();
+
   if (debug_json_stream_.streamIsSet())
   {
     debug_json_stream_.endArray();
+
+    if (address_.size() > 0)
+    {
+      debug_json_stream_.endArray();
+    }
+
     debug_json_stream_.writeNewline();
   }
 }

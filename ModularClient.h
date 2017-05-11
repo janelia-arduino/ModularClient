@@ -231,12 +231,19 @@ public:
 
   bool callWasSuccessful();
 
+  template<typename T>
+  void setAddress(T & address_array);
+  template <typename T, size_t N>
+  void setAddress(const T (&address_array)[N]);
+  void removeAddress();
+
   // ArduinoJson::JsonVariant sendJsonRequest(ArduinoJson::JsonArray & request_array);
 
 private:
   bool call_successful_;
   JsonStream json_stream_;
   JsonStream debug_json_stream_;
+  Array<size_t,modular_client::constants::ADDRESS_ID_COUNT_MAX> address_;
 
   void initialize();
   template<typename T>
