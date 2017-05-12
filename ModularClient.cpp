@@ -26,6 +26,11 @@ void ModularClient::setStream(Stream  & stream)
   json_stream_.setStream(stream);
 }
 
+Stream & ModularClient::getStream()
+{
+  return json_stream_.getStream();
+}
+
 void ModularClient::removeStream()
 {
   json_stream_.removeStream();
@@ -36,6 +41,11 @@ void ModularClient::setDebugStream(Stream  & stream)
   debug_json_stream_.setStream(stream);
 }
 
+Stream & ModularClient::getDebugStream()
+{
+  return debug_json_stream_.getStream();
+}
+
 void ModularClient::removeDebugStream()
 {
   debug_json_stream_.removeStream();
@@ -44,6 +54,11 @@ void ModularClient::removeDebugStream()
 bool ModularClient::callWasSuccessful()
 {
   return call_successful_;
+}
+
+ModularClient::address_t ModularClient::getAddress()
+{
+  return address_;
 }
 
 void ModularClient::removeAddress()

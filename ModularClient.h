@@ -25,8 +25,10 @@ public:
   ModularClient(Stream & stream);
 
   void setStream(Stream & stream);
+  Stream & getStream();
   void removeStream();
   void setDebugStream(Stream & stream);
+  Stream & getDebugStream();
   void removeDebugStream();
 
   template<typename T>
@@ -235,6 +237,8 @@ public:
   void setAddress(T & address_array);
   template <typename T, size_t N>
   void setAddress(const T (&address_array)[N]);
+  typedef Array<size_t,modular_client::constants::ADDRESS_ID_COUNT_MAX> address_t;
+  address_t getAddress();
   void removeAddress();
 
   // ArduinoJson::JsonVariant sendJsonRequest(ArduinoJson::JsonArray & request_array);
