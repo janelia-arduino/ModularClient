@@ -7,7 +7,7 @@
 // ----------------------------------------------------------------------------
 #ifndef MODULAR_CLIENT_CONSTANTS_H
 #define MODULAR_CLIENT_CONSTANTS_H
-#include "ConstantVariable.h"
+#include <ConstantVariable.h>
 
 
 namespace modular_client

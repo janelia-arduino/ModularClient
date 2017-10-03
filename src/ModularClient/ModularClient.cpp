@@ -5,7 +5,7 @@
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#include "ModularClient.h"
+#include "../ModularClient.h"
 
 
 using namespace modular_client;
@@ -99,4 +99,3 @@ void ModularClient::checkResponse()
 {
   call_successful_ = json_stream_.readJsonAndFind(constants::result_key_string);
 }
-

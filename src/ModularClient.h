@@ -7,15 +7,15 @@
 // ----------------------------------------------------------------------------
 #ifndef MODULAR_DEVICE_H
 #define MODULAR_DEVICE_H
-#include "Arduino.h"
-#include "Streaming.h"
-#include "Array.h"
-#include "Vector.h"
-#include "ConstantVariable.h"
-#include "ArduinoJson.h"
-#include "JsonStream.h"
+#include <Arduino.h>
+#include <Streaming.h>
+#include <Array.h>
+#include <Vector.h>
+#include <ConstantVariable.h>
+#include <ArduinoJson.h>
+#include <JsonStream.h>
 
-#include "utility/Constants.h"
+#include "ModularClient/Constants.h"
 
 
 class ModularClient
@@ -260,6 +260,6 @@ private:
   ArduinoJson::JsonVariant processResponse(StaticJsonBuffer<N> & json_buffer);
   void checkResponse();
 };
-#include "ModularClientDefinitions.h"
+#include "ModularClient/ModularClientDefinitions.h"
 
 #endif

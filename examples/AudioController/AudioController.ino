@@ -1,12 +1,12 @@
-#include "Arduino.h"
-#include "Streaming.h"
-#include "Array.h"
-#include "Vector.h"
-#include "ConstantVariable.h"
-#include "ArduinoJson.h"
-#include "JsonStream.h"
+#include <Arduino.h>
+#include <Streaming.h>
+#include <Array.h>
+#include <Vector.h>
+#include <ConstantVariable.h>
+#include <ArduinoJson.h>
+#include <JsonStream.h>
 
-#include "ModularClient.h"
+#include <ModularClient.h>
 
 
 const long BAUDRATE = 115200;
