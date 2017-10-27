@@ -455,15 +455,16 @@ ArduinoJson::JsonVariant ModularClient::processResponse(StaticJsonBuffer<N> & js
   JsonObject& root = json_buffer.parseObject(json_stream_.getStream());
   json_stream_.clear();
 
+  call_successful_ = false;
   if (root.success())
   {
-    call_successful_  = (root.containsKey("result") ? true : false);
-    return root["result"];
+    call_successful_ = (root.containsKey("result") ? true : false);
   }
-  else
+  if (!call_successful_)
   {
-    call_successful_ = false;
+    return root;
   }
+  return root["result"];
 }
 
 #endif
