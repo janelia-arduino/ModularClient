@@ -9,14 +9,14 @@
 #include <ModularClient.h>
 
 
-const long BAUDRATE = 115200;
+const long BAUD = 115200;
 HardwareSerial & serial = Serial1;
 ModularClient dev(serial);
 
 void setup()
 {
-  Serial.begin(BAUDRATE);
-  serial.begin(BAUDRATE);
+  Serial.begin(BAUD);
+  serial.begin(BAUD);
 
   dev.setDebugStream(Serial);
 }
