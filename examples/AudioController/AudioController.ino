@@ -9,7 +9,7 @@
 #include <ModularClient.h>
 
 
-const long BAUD = 115200;
+const long BAUD = 2000000;
 HardwareSerial & serial = Serial1;
 ModularClient dev(serial);
 
