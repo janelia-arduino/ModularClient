@@ -51,6 +51,21 @@ void ModularClient::removeDebugStream()
   debug_json_stream_.removeStream();
 }
 
+void ModularClient::enable()
+{
+  enabled_ = true;
+}
+
+void ModularClient::disable()
+{
+  enabled_ = false;
+}
+
+bool ModularClient::enabled()
+{
+  return enabled_;
+}
+
 bool ModularClient::callWasSuccessful()
 {
   return call_successful_;
@@ -68,11 +83,16 @@ void ModularClient::removeAddress()
 
 void ModularClient::initialize()
 {
+  enabled_ = true;
   call_successful_ = false;
 }
 
 void ModularClient::endRequest()
 {
+  if (!enabled_)
+  {
+    return;
+  }
   json_stream_.endArray();
 
   if (address_.size() > 0)
@@ -97,5 +117,10 @@ void ModularClient::endRequest()
 
 void ModularClient::checkResponse()
 {
+  if (!enabled_)
+  {
+    call_successful_ = false;
+    return;
+  }
   call_successful_ = json_stream_.readJsonAndFind(constants::result_key_string);
 }

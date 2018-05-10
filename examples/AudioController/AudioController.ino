@@ -12,8 +12,6 @@ void setup()
 {
   Serial.begin(BAUD);
   serial.begin(BAUD);
-
-  dev.setDebugStream(Serial);
 }
 
 void checkCall(const char method[])

@@ -13,6 +13,10 @@ template<typename T>
 void ModularClient::beginRequest(const T method)
 {
   call_successful_ = false;
+  if (!enabled_)
+  {
+    return;
+  }
 
   if (address_.size() > 0)
   {
@@ -41,6 +45,10 @@ void ModularClient::beginRequest(const T method)
 template<typename T>
 void ModularClient::addParameter(const T parameter)
 {
+  if (!enabled_)
+  {
+    return;
+  }
   json_stream_.write(parameter);
   if (debug_json_stream_.streamIsSet())
   {
@@ -452,10 +460,16 @@ void ModularClient::setAddress(const T (&address_array)[N])
 template<size_t N>
 ArduinoJson::JsonVariant ModularClient::processResponse(StaticJsonBuffer<N> & json_buffer)
 {
+  call_successful_ = false;
+  if (!enabled_)
+  {
+    ArduinoJson::JsonObject& root = json_buffer.createObject();
+    return root;
+  }
+
   JsonObject& root = json_buffer.parseObject(json_stream_.getStream());
   json_stream_.clear();
 
-  call_successful_ = false;
   if (root.success())
   {
     call_successful_ = (root.containsKey("result") ? true : false);
