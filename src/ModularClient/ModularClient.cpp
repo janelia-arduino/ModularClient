@@ -81,10 +81,34 @@ void ModularClient::removeAddress()
   address_.clear();
 }
 
+void ModularClient::setName(const ConstantString & name)
+{
+  name_ptr_ = &name;
+}
+
+bool ModularClient::compareName(const char * name_to_compare)
+{
+  char name_str[name_ptr_->length()+1];
+  name_str[0] = '\0';
+  name_ptr_->copy(name_str);
+  return String(name_str).equalsIgnoreCase(name_to_compare);
+}
+
+bool ModularClient::compareName(const ConstantString & name_to_compare)
+{
+  return (&name_to_compare == name_ptr_);
+}
+
+const ConstantString & ModularClient::getName()
+{
+  return *name_ptr_;
+}
+
 void ModularClient::initialize()
 {
   enabled_ = true;
   call_successful_ = false;
+  setName(constants::empty_constant_string);
 }
 
 void ModularClient::endRequest()

@@ -2,16 +2,20 @@
 #include <Streaming.h>
 #include <ArduinoJson.h>
 #include <ModularClient.h>
+#include <ConstantVariable.h>
 
 
 const long BAUD = 2000000;
 HardwareSerial & serial = Serial1;
 ModularClient dev(serial);
+CONSTANT_STRING(device_name_string,"audio_controller");
 
 void setup()
 {
   Serial.begin(BAUD);
   serial.begin(BAUD);
+
+  dev.setName(device_name_string);
 }
 
 void checkCall(const char method[])
@@ -62,7 +66,15 @@ void loop()
   const char * device_name = device_id["name"];
   if (dev.callWasSuccessful())
   {
-    Serial << "device_name: " << device_name << "\n\n";
+    Serial << "device_name: " << device_name << "\n";
+    if (dev.compareName(device_name))
+    {
+      Serial << "names match!\n\n";
+    }
+    else
+    {
+      Serial << "names do not match!\n\n";
+    }
   }
   else
   {

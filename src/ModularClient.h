@@ -247,12 +247,18 @@ public:
 
   // ArduinoJson::JsonVariant sendJsonRequest(ArduinoJson::JsonArray & request_array);
 
+  void setName(const ConstantString & name);
+  bool compareName(const char * name_to_compare);
+  bool compareName(const ConstantString & name_to_compare);
+  const ConstantString & getName();
+
 private:
   JsonStream json_stream_;
   JsonStream debug_json_stream_;
   Array<size_t,modular_client::constants::ADDRESS_ID_COUNT_MAX> address_;
   bool enabled_;
   bool call_successful_;
+  const ConstantString * name_ptr_;
 
   void initialize();
   template<typename T>
