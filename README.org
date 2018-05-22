@@ -3,16 +3,22 @@
 #+EMAIL: peterpolidoro@gmail.com
 
 * Library Information
-  - Author :: Peter Polidoro
+  - Name :: ModularClient
+  - Version :: 1.2.0
   - License :: BSD
+  - URL :: https://github.com/janelia-arduino/ModularClient
+  - Author :: Peter Polidoro
+  - Email :: peterpolidoro@gmail.com
 
-  Modular device client library for communicating with modular device
-  servers.
+** Description
+
+   Modular device client library for communicating with modular device
+   servers.
 
 * More Detailed Modular Device Information
 
-  [[https://github.com/janelia-modular-devices/modular-devices][modular-devices]]
+  [[https://github.com/janelia-modular-devices/modular-devices]]
 
-* Library Dependencies
+* Installation Instructions
 
-  [[https://github.com/janelia-arduino/arduino-libraries][arduino-libraries]]
+  [[https://github.com/janelia-arduino/arduino-libraries]]
