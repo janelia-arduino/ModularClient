@@ -61,7 +61,7 @@ void ModularClient::call(const T method)
 {
   beginRequest(method);
   endRequest();
-  return checkResponse();
+  checkResponse();
 }
 
 template<typename T,
@@ -72,7 +72,7 @@ void ModularClient::call(const T method,
   beginRequest(method);
   addParameter(parameter0);
   endRequest();
-  return checkResponse();
+  checkResponse();
 }
 
 template<typename T,
@@ -86,7 +86,7 @@ void ModularClient::call(const T method,
   addParameter(parameter0);
   addParameter(parameter1);
   endRequest();
-  return checkResponse();
+  checkResponse();
 }
 
 template<typename T,
@@ -103,7 +103,7 @@ void ModularClient::call(const T method,
   addParameter(parameter1);
   addParameter(parameter2);
   endRequest();
-  return checkResponse();
+  checkResponse();
 }
 
 template<typename T,
@@ -123,7 +123,7 @@ void ModularClient::call(const T method,
   addParameter(parameter2);
   addParameter(parameter3);
   endRequest();
-  return checkResponse();
+  checkResponse();
 }
 
 template<typename T,
@@ -146,7 +146,7 @@ void ModularClient::call(const T method,
   addParameter(parameter3);
   addParameter(parameter4);
   endRequest();
-  return checkResponse();
+  checkResponse();
 }
 
 template<typename T,
@@ -172,7 +172,7 @@ void ModularClient::call(const T method,
   addParameter(parameter4);
   addParameter(parameter5);
   endRequest();
-  return checkResponse();
+  checkResponse();
 }
 
 template<typename T,
@@ -201,7 +201,7 @@ void ModularClient::call(const T method,
   addParameter(parameter5);
   addParameter(parameter6);
   endRequest();
-  return checkResponse();
+  checkResponse();
 }
 
 template<typename T,
@@ -233,7 +233,223 @@ void ModularClient::call(const T method,
   addParameter(parameter6);
   addParameter(parameter7);
   endRequest();
-  return checkResponse();
+  checkResponse();
+}
+
+template<typename T>
+void ModularClient::callUntilSuccessful(const T method)
+{
+  do
+  {
+    beginRequest(method);
+    endRequest();
+    checkResponse();
+  }
+  while (!callWasSuccessful());
+}
+
+template<typename T,
+         typename A>
+void ModularClient::callUntilSuccessful(const T method,
+                                        const A parameter0)
+{
+  do
+  {
+    beginRequest(method);
+    addParameter(parameter0);
+    endRequest();
+    checkResponse();
+  }
+  while (!callWasSuccessful());
+}
+
+template<typename T,
+         typename A,
+         typename B>
+void ModularClient::callUntilSuccessful(const T method,
+                                        const A parameter0,
+                                        const B parameter1)
+{
+  do
+  {
+    beginRequest(method);
+    addParameter(parameter0);
+    addParameter(parameter1);
+    endRequest();
+    checkResponse();
+  }
+  while (!callWasSuccessful());
+}
+
+template<typename T,
+         typename A,
+         typename B,
+         typename C>
+void ModularClient::callUntilSuccessful(const T method,
+                                        const A parameter0,
+                                        const B parameter1,
+                                        const C parameter2)
+{
+  do
+  {
+    beginRequest(method);
+    addParameter(parameter0);
+    addParameter(parameter1);
+    addParameter(parameter2);
+    endRequest();
+    checkResponse();
+  }
+  while (!callWasSuccessful());
+}
+
+template<typename T,
+         typename A,
+         typename B,
+         typename C,
+         typename D>
+void ModularClient::callUntilSuccessful(const T method,
+                                        const A parameter0,
+                                        const B parameter1,
+                                        const C parameter2,
+                                        const D parameter3)
+{
+  do
+  {
+    beginRequest(method);
+    addParameter(parameter0);
+    addParameter(parameter1);
+    addParameter(parameter2);
+    addParameter(parameter3);
+    endRequest();
+    checkResponse();
+  }
+  while (!callWasSuccessful());
+}
+
+template<typename T,
+         typename A,
+         typename B,
+         typename C,
+         typename D,
+         typename E>
+void ModularClient::callUntilSuccessful(const T method,
+                                        const A parameter0,
+                                        const B parameter1,
+                                        const C parameter2,
+                                        const D parameter3,
+                                        const E parameter4)
+{
+  do
+  {
+    beginRequest(method);
+    addParameter(parameter0);
+    addParameter(parameter1);
+    addParameter(parameter2);
+    addParameter(parameter3);
+    addParameter(parameter4);
+    endRequest();
+    checkResponse();
+  }
+  while (!callWasSuccessful());
+}
+
+template<typename T,
+         typename A,
+         typename B,
+         typename C,
+         typename D,
+         typename E,
+         typename F>
+void ModularClient::callUntilSuccessful(const T method,
+                                        const A parameter0,
+                                        const B parameter1,
+                                        const C parameter2,
+                                        const D parameter3,
+                                        const E parameter4,
+                                        const F parameter5)
+{
+  do
+  {
+    beginRequest(method);
+    addParameter(parameter0);
+    addParameter(parameter1);
+    addParameter(parameter2);
+    addParameter(parameter3);
+    addParameter(parameter4);
+    addParameter(parameter5);
+    endRequest();
+    checkResponse();
+  }
+  while (!callWasSuccessful());
+}
+
+template<typename T,
+         typename A,
+         typename B,
+         typename C,
+         typename D,
+         typename E,
+         typename F,
+         typename G>
+void ModularClient::callUntilSuccessful(const T method,
+                                        const A parameter0,
+                                        const B parameter1,
+                                        const C parameter2,
+                                        const D parameter3,
+                                        const E parameter4,
+                                        const F parameter5,
+                                        const G parameter6)
+{
+  do
+  {
+    beginRequest(method);
+    addParameter(parameter0);
+    addParameter(parameter1);
+    addParameter(parameter2);
+    addParameter(parameter3);
+    addParameter(parameter4);
+    addParameter(parameter5);
+    addParameter(parameter6);
+    endRequest();
+    checkResponse();
+  }
+  while (!callWasSuccessful());
+}
+
+template<typename T,
+         typename A,
+         typename B,
+         typename C,
+         typename D,
+         typename E,
+         typename F,
+         typename G,
+         typename H>
+void ModularClient::callUntilSuccessful(const T method,
+                                        const A parameter0,
+                                        const B parameter1,
+                                        const C parameter2,
+                                        const D parameter3,
+                                        const E parameter4,
+                                        const F parameter5,
+                                        const G parameter6,
+                                        const H parameter7)
+{
+  do
+  {
+    beginRequest(method);
+    addParameter(parameter0);
+    addParameter(parameter1);
+    addParameter(parameter2);
+    addParameter(parameter3);
+    addParameter(parameter4);
+    addParameter(parameter5);
+    addParameter(parameter6);
+    addParameter(parameter7);
+    endRequest();
+    checkResponse();
+  }
+  while (!callWasSuccessful());
 }
 
 template<size_t N,
