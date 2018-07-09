@@ -244,6 +244,10 @@ void ModularClient::callUntilSuccessful(const T method)
     beginRequest(method);
     endRequest();
     checkResponse();
+    if (!enabled_)
+    {
+      break;
+    }
   }
   while (!callWasSuccessful());
 }
@@ -259,6 +263,10 @@ void ModularClient::callUntilSuccessful(const T method,
     addParameter(parameter0);
     endRequest();
     checkResponse();
+    if (!enabled_)
+    {
+      break;
+    }
   }
   while (!callWasSuccessful());
 }
@@ -277,6 +285,10 @@ void ModularClient::callUntilSuccessful(const T method,
     addParameter(parameter1);
     endRequest();
     checkResponse();
+    if (!enabled_)
+    {
+      break;
+    }
   }
   while (!callWasSuccessful());
 }
@@ -298,6 +310,10 @@ void ModularClient::callUntilSuccessful(const T method,
     addParameter(parameter2);
     endRequest();
     checkResponse();
+    if (!enabled_)
+    {
+      break;
+    }
   }
   while (!callWasSuccessful());
 }
@@ -322,6 +338,10 @@ void ModularClient::callUntilSuccessful(const T method,
     addParameter(parameter3);
     endRequest();
     checkResponse();
+    if (!enabled_)
+    {
+      break;
+    }
   }
   while (!callWasSuccessful());
 }
@@ -349,6 +369,10 @@ void ModularClient::callUntilSuccessful(const T method,
     addParameter(parameter4);
     endRequest();
     checkResponse();
+    if (!enabled_)
+    {
+      break;
+    }
   }
   while (!callWasSuccessful());
 }
@@ -379,6 +403,10 @@ void ModularClient::callUntilSuccessful(const T method,
     addParameter(parameter5);
     endRequest();
     checkResponse();
+    if (!enabled_)
+    {
+      break;
+    }
   }
   while (!callWasSuccessful());
 }
@@ -412,6 +440,10 @@ void ModularClient::callUntilSuccessful(const T method,
     addParameter(parameter6);
     endRequest();
     checkResponse();
+    if (!enabled_)
+    {
+      break;
+    }
   }
   while (!callWasSuccessful());
 }
@@ -448,6 +480,10 @@ void ModularClient::callUntilSuccessful(const T method,
     addParameter(parameter7);
     endRequest();
     checkResponse();
+    if (!enabled_)
+    {
+      break;
+    }
   }
   while (!callWasSuccessful());
 }
