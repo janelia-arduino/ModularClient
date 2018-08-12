@@ -3,7 +3,7 @@
 //
 //
 // Authors:
-// Peter Polidoro polidorop@janelia.hhmi.org
+// Peter Polidoro peterpolidoro@gmail.com
 // ----------------------------------------------------------------------------
 #ifndef MODULAR_CLIENT_CONSTANTS_H
 #define MODULAR_CLIENT_CONSTANTS_H
