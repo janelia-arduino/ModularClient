@@ -699,7 +699,8 @@ void ModularClient::setAddress(T & address_array)
   }
 }
 
-template<typename T, size_t N>
+template<typename T,
+  size_t N>
 void ModularClient::setAddress(const T (&address_array)[N])
 {
   if (N <= address_.max_size())

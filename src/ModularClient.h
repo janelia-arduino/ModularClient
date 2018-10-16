@@ -330,7 +330,8 @@ public:
 
   template<typename T>
   void setAddress(T & address_array);
-  template <typename T, size_t N>
+  template <typename T,
+    size_t N>
   void setAddress(const T (&address_array)[N]);
   typedef Array<size_t,modular_client::constants::ADDRESS_ID_COUNT_MAX> address_t;
   address_t getAddress();
