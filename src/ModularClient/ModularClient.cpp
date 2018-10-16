@@ -16,7 +16,7 @@ ModularClient::ModularClient()
 }
 
 ModularClient::ModularClient(Stream & stream) :
-  json_stream_(stream)
+json_stream_(stream)
 {
   initialize();
 }

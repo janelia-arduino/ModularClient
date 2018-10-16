@@ -65,9 +65,9 @@ void ModularClient::call(const T method)
 }
 
 template<typename T,
-         typename A>
+  typename A>
 void ModularClient::call(const T method,
-                         const A parameter0)
+  const A parameter0)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -76,11 +76,11 @@ void ModularClient::call(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B>
+  typename A,
+  typename B>
 void ModularClient::call(const T method,
-                         const A parameter0,
-                         const B parameter1)
+  const A parameter0,
+  const B parameter1)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -90,13 +90,13 @@ void ModularClient::call(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B,
-         typename C>
+  typename A,
+  typename B,
+  typename C>
 void ModularClient::call(const T method,
-                         const A parameter0,
-                         const B parameter1,
-                         const C parameter2)
+  const A parameter0,
+  const B parameter1,
+  const C parameter2)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -107,15 +107,15 @@ void ModularClient::call(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D>
+  typename A,
+  typename B,
+  typename C,
+  typename D>
 void ModularClient::call(const T method,
-                         const A parameter0,
-                         const B parameter1,
-                         const C parameter2,
-                         const D parameter3)
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -127,17 +127,17 @@ void ModularClient::call(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D,
-         typename E>
+  typename A,
+  typename B,
+  typename C,
+  typename D,
+  typename E>
 void ModularClient::call(const T method,
-                         const A parameter0,
-                         const B parameter1,
-                         const C parameter2,
-                         const D parameter3,
-                         const E parameter4)
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3,
+  const E parameter4)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -150,19 +150,19 @@ void ModularClient::call(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D,
-         typename E,
-         typename F>
+  typename A,
+  typename B,
+  typename C,
+  typename D,
+  typename E,
+  typename F>
 void ModularClient::call(const T method,
-                         const A parameter0,
-                         const B parameter1,
-                         const C parameter2,
-                         const D parameter3,
-                         const E parameter4,
-                         const F parameter5)
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3,
+  const E parameter4,
+  const F parameter5)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -176,21 +176,21 @@ void ModularClient::call(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D,
-         typename E,
-         typename F,
-         typename G>
+  typename A,
+  typename B,
+  typename C,
+  typename D,
+  typename E,
+  typename F,
+  typename G>
 void ModularClient::call(const T method,
-                         const A parameter0,
-                         const B parameter1,
-                         const C parameter2,
-                         const D parameter3,
-                         const E parameter4,
-                         const F parameter5,
-                         const G parameter6)
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3,
+  const E parameter4,
+  const F parameter5,
+  const G parameter6)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -205,23 +205,23 @@ void ModularClient::call(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D,
-         typename E,
-         typename F,
-         typename G,
-         typename H>
+  typename A,
+  typename B,
+  typename C,
+  typename D,
+  typename E,
+  typename F,
+  typename G,
+  typename H>
 void ModularClient::call(const T method,
-                         const A parameter0,
-                         const B parameter1,
-                         const C parameter2,
-                         const D parameter3,
-                         const E parameter4,
-                         const F parameter5,
-                         const G parameter6,
-                         const H parameter7)
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3,
+  const E parameter4,
+  const F parameter5,
+  const G parameter6,
+  const H parameter7)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -253,9 +253,9 @@ void ModularClient::callUntilSuccessful(const T method)
 }
 
 template<typename T,
-         typename A>
+  typename A>
 void ModularClient::callUntilSuccessful(const T method,
-                                        const A parameter0)
+  const A parameter0)
 {
   do
   {
@@ -272,11 +272,11 @@ void ModularClient::callUntilSuccessful(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B>
+  typename A,
+  typename B>
 void ModularClient::callUntilSuccessful(const T method,
-                                        const A parameter0,
-                                        const B parameter1)
+  const A parameter0,
+  const B parameter1)
 {
   do
   {
@@ -294,13 +294,13 @@ void ModularClient::callUntilSuccessful(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B,
-         typename C>
+  typename A,
+  typename B,
+  typename C>
 void ModularClient::callUntilSuccessful(const T method,
-                                        const A parameter0,
-                                        const B parameter1,
-                                        const C parameter2)
+  const A parameter0,
+  const B parameter1,
+  const C parameter2)
 {
   do
   {
@@ -319,15 +319,15 @@ void ModularClient::callUntilSuccessful(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D>
+  typename A,
+  typename B,
+  typename C,
+  typename D>
 void ModularClient::callUntilSuccessful(const T method,
-                                        const A parameter0,
-                                        const B parameter1,
-                                        const C parameter2,
-                                        const D parameter3)
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3)
 {
   do
   {
@@ -347,17 +347,17 @@ void ModularClient::callUntilSuccessful(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D,
-         typename E>
+  typename A,
+  typename B,
+  typename C,
+  typename D,
+  typename E>
 void ModularClient::callUntilSuccessful(const T method,
-                                        const A parameter0,
-                                        const B parameter1,
-                                        const C parameter2,
-                                        const D parameter3,
-                                        const E parameter4)
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3,
+  const E parameter4)
 {
   do
   {
@@ -378,19 +378,19 @@ void ModularClient::callUntilSuccessful(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D,
-         typename E,
-         typename F>
+  typename A,
+  typename B,
+  typename C,
+  typename D,
+  typename E,
+  typename F>
 void ModularClient::callUntilSuccessful(const T method,
-                                        const A parameter0,
-                                        const B parameter1,
-                                        const C parameter2,
-                                        const D parameter3,
-                                        const E parameter4,
-                                        const F parameter5)
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3,
+  const E parameter4,
+  const F parameter5)
 {
   do
   {
@@ -412,21 +412,21 @@ void ModularClient::callUntilSuccessful(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D,
-         typename E,
-         typename F,
-         typename G>
+  typename A,
+  typename B,
+  typename C,
+  typename D,
+  typename E,
+  typename F,
+  typename G>
 void ModularClient::callUntilSuccessful(const T method,
-                                        const A parameter0,
-                                        const B parameter1,
-                                        const C parameter2,
-                                        const D parameter3,
-                                        const E parameter4,
-                                        const F parameter5,
-                                        const G parameter6)
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3,
+  const E parameter4,
+  const F parameter5,
+  const G parameter6)
 {
   do
   {
@@ -449,23 +449,23 @@ void ModularClient::callUntilSuccessful(const T method,
 }
 
 template<typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D,
-         typename E,
-         typename F,
-         typename G,
-         typename H>
+  typename A,
+  typename B,
+  typename C,
+  typename D,
+  typename E,
+  typename F,
+  typename G,
+  typename H>
 void ModularClient::callUntilSuccessful(const T method,
-                                        const A parameter0,
-                                        const B parameter1,
-                                        const C parameter2,
-                                        const D parameter3,
-                                        const E parameter4,
-                                        const F parameter5,
-                                        const G parameter6,
-                                        const H parameter7)
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3,
+  const E parameter4,
+  const F parameter5,
+  const G parameter6,
+  const H parameter7)
 {
   do
   {
@@ -489,9 +489,9 @@ void ModularClient::callUntilSuccessful(const T method,
 }
 
 template<size_t N,
-         typename T>
+  typename T>
 ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                                      const T method)
+  const T method)
 {
   beginRequest(method);
   endRequest();
@@ -499,11 +499,11 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
 }
 
 template<size_t N,
-         typename T,
-         typename A>
+  typename T,
+  typename A>
 ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                                      const T method,
-                                                      const A parameter0)
+  const T method,
+  const A parameter0)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -512,13 +512,13 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
 }
 
 template<size_t N,
-         typename T,
-         typename A,
-         typename B>
+  typename T,
+  typename A,
+  typename B>
 ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                                      const T method,
-                                                      const A parameter0,
-                                                      const B parameter1)
+  const T method,
+  const A parameter0,
+  const B parameter1)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -528,15 +528,15 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
 }
 
 template<size_t N,
-         typename T,
-         typename A,
-         typename B,
-         typename C>
+  typename T,
+  typename A,
+  typename B,
+  typename C>
 ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                                      const T method,
-                                                      const A parameter0,
-                                                      const B parameter1,
-                                                      const C parameter2)
+  const T method,
+  const A parameter0,
+  const B parameter1,
+  const C parameter2)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -547,17 +547,17 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
 }
 
 template<size_t N,
-         typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D>
+  typename T,
+  typename A,
+  typename B,
+  typename C,
+  typename D>
 ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                                      const T method,
-                                                      const A parameter0,
-                                                      const B parameter1,
-                                                      const C parameter2,
-                                                      const D parameter3)
+  const T method,
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -569,19 +569,19 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
 }
 
 template<size_t N,
-         typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D,
-         typename E>
+  typename T,
+  typename A,
+  typename B,
+  typename C,
+  typename D,
+  typename E>
 ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                                      const T method,
-                                                      const A parameter0,
-                                                      const B parameter1,
-                                                      const C parameter2,
-                                                      const D parameter3,
-                                                      const E parameter4)
+  const T method,
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3,
+  const E parameter4)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -594,21 +594,21 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
 }
 
 template<size_t N,
-         typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D,
-         typename E,
-         typename F>
+  typename T,
+  typename A,
+  typename B,
+  typename C,
+  typename D,
+  typename E,
+  typename F>
 ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                                      const T method,
-                                                      const A parameter0,
-                                                      const B parameter1,
-                                                      const C parameter2,
-                                                      const D parameter3,
-                                                      const E parameter4,
-                                                      const F parameter5)
+  const T method,
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3,
+  const E parameter4,
+  const F parameter5)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -622,23 +622,23 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
 }
 
 template<size_t N,
-         typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D,
-         typename E,
-         typename F,
-         typename G>
+  typename T,
+  typename A,
+  typename B,
+  typename C,
+  typename D,
+  typename E,
+  typename F,
+  typename G>
 ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                                      const T method,
-                                                      const A parameter0,
-                                                      const B parameter1,
-                                                      const C parameter2,
-                                                      const D parameter3,
-                                                      const E parameter4,
-                                                      const F parameter5,
-                                                      const G parameter6)
+  const T method,
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3,
+  const E parameter4,
+  const F parameter5,
+  const G parameter6)
 {
   beginRequest(method);
   addParameter(parameter0);
@@ -653,25 +653,25 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
 }
 
 template<size_t N,
-         typename T,
-         typename A,
-         typename B,
-         typename C,
-         typename D,
-         typename E,
-         typename F,
-         typename G,
-         typename H>
+  typename T,
+  typename A,
+  typename B,
+  typename C,
+  typename D,
+  typename E,
+  typename F,
+  typename G,
+  typename H>
 ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                                      const T method,
-                                                      const A parameter0,
-                                                      const B parameter1,
-                                                      const C parameter2,
-                                                      const D parameter3,
-                                                      const E parameter4,
-                                                      const F parameter5,
-                                                      const G parameter6,
-                                                      const H parameter7)
+  const T method,
+  const A parameter0,
+  const B parameter1,
+  const C parameter2,
+  const D parameter3,
+  const E parameter4,
+  const F parameter5,
+  const G parameter6,
+  const H parameter7)
 {
   beginRequest(method);
   addParameter(parameter0);

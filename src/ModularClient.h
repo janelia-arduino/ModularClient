@@ -38,293 +38,293 @@ public:
   template<typename T>
   void call(const T method);
   template<typename T,
-           typename A>
+    typename A>
   void call(const T method,
-            const A parameter0);
+    const A parameter0);
   template<typename T,
-           typename A,
-           typename B>
+    typename A,
+    typename B>
   void call(const T method,
-            const A parameter0,
-            const B parameter1);
+    const A parameter0,
+    const B parameter1);
   template<typename T,
-           typename A,
-           typename B,
-           typename C>
+    typename A,
+    typename B,
+    typename C>
   void call(const T method,
-            const A parameter0,
-            const B parameter1,
-            const C parameter2);
+    const A parameter0,
+    const B parameter1,
+    const C parameter2);
   template<typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D>
+    typename A,
+    typename B,
+    typename C,
+    typename D>
   void call(const T method,
-            const A parameter0,
-            const B parameter1,
-            const C parameter2,
-            const D parameter3);
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3);
   template<typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D,
-           typename E>
+    typename A,
+    typename B,
+    typename C,
+    typename D,
+    typename E>
   void call(const T method,
-            const A parameter0,
-            const B parameter1,
-            const C parameter2,
-            const D parameter3,
-            const E parameter4);
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3,
+    const E parameter4);
   template<typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D,
-           typename E,
-           typename F>
+    typename A,
+    typename B,
+    typename C,
+    typename D,
+    typename E,
+    typename F>
   void call(const T method,
-            const A parameter0,
-            const B parameter1,
-            const C parameter2,
-            const D parameter3,
-            const E parameter4,
-            const F parameter5);
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3,
+    const E parameter4,
+    const F parameter5);
   template<typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D,
-           typename E,
-           typename F,
-           typename G>
+    typename A,
+    typename B,
+    typename C,
+    typename D,
+    typename E,
+    typename F,
+    typename G>
   void call(const T method,
-            const A parameter0,
-            const B parameter1,
-            const C parameter2,
-            const D parameter3,
-            const E parameter4,
-            const F parameter5,
-            const G parameter6);
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3,
+    const E parameter4,
+    const F parameter5,
+    const G parameter6);
   template<typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D,
-           typename E,
-           typename F,
-           typename G,
-           typename H>
+    typename A,
+    typename B,
+    typename C,
+    typename D,
+    typename E,
+    typename F,
+    typename G,
+    typename H>
   void call(const T method,
-            const A parameter0,
-            const B parameter1,
-            const C parameter2,
-            const D parameter3,
-            const E parameter4,
-            const F parameter5,
-            const G parameter6,
-            const H parameter7);
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3,
+    const E parameter4,
+    const F parameter5,
+    const G parameter6,
+    const H parameter7);
 
   template<typename T>
   void callUntilSuccessful(const T method);
   template<typename T,
-           typename A>
+    typename A>
   void callUntilSuccessful(const T method,
-                           const A parameter0);
+    const A parameter0);
   template<typename T,
-           typename A,
-           typename B>
+    typename A,
+    typename B>
   void callUntilSuccessful(const T method,
-                           const A parameter0,
-                           const B parameter1);
+    const A parameter0,
+    const B parameter1);
   template<typename T,
-           typename A,
-           typename B,
-           typename C>
+    typename A,
+    typename B,
+    typename C>
   void callUntilSuccessful(const T method,
-                           const A parameter0,
-                           const B parameter1,
-                           const C parameter2);
+    const A parameter0,
+    const B parameter1,
+    const C parameter2);
   template<typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D>
+    typename A,
+    typename B,
+    typename C,
+    typename D>
   void callUntilSuccessful(const T method,
-                           const A parameter0,
-                           const B parameter1,
-                           const C parameter2,
-                           const D parameter3);
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3);
   template<typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D,
-           typename E>
+    typename A,
+    typename B,
+    typename C,
+    typename D,
+    typename E>
   void callUntilSuccessful(const T method,
-                           const A parameter0,
-                           const B parameter1,
-                           const C parameter2,
-                           const D parameter3,
-                           const E parameter4);
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3,
+    const E parameter4);
   template<typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D,
-           typename E,
-           typename F>
+    typename A,
+    typename B,
+    typename C,
+    typename D,
+    typename E,
+    typename F>
   void callUntilSuccessful(const T method,
-                           const A parameter0,
-                           const B parameter1,
-                           const C parameter2,
-                           const D parameter3,
-                           const E parameter4,
-                           const F parameter5);
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3,
+    const E parameter4,
+    const F parameter5);
   template<typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D,
-           typename E,
-           typename F,
-           typename G>
+    typename A,
+    typename B,
+    typename C,
+    typename D,
+    typename E,
+    typename F,
+    typename G>
   void callUntilSuccessful(const T method,
-                           const A parameter0,
-                           const B parameter1,
-                           const C parameter2,
-                           const D parameter3,
-                           const E parameter4,
-                           const F parameter5,
-                           const G parameter6);
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3,
+    const E parameter4,
+    const F parameter5,
+    const G parameter6);
   template<typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D,
-           typename E,
-           typename F,
-           typename G,
-           typename H>
+    typename A,
+    typename B,
+    typename C,
+    typename D,
+    typename E,
+    typename F,
+    typename G,
+    typename H>
   void callUntilSuccessful(const T method,
-                           const A parameter0,
-                           const B parameter1,
-                           const C parameter2,
-                           const D parameter3,
-                           const E parameter4,
-                           const F parameter5,
-                           const G parameter6,
-                           const H parameter7);
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3,
+    const E parameter4,
+    const F parameter5,
+    const G parameter6,
+    const H parameter7);
 
   template<size_t N,
-           typename T>
+    typename T>
   ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                         const T method);
+    const T method);
   template<size_t N,
-           typename T,
-           typename A>
+    typename T,
+    typename A>
   ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                         const T method,
-                                         const A parameter0);
+    const T method,
+    const A parameter0);
   template<size_t N,
-           typename T,
-           typename A,
-           typename B>
+    typename T,
+    typename A,
+    typename B>
   ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                         const T method,
-                                         const A parameter0,
-                                         const B parameter1);
+    const T method,
+    const A parameter0,
+    const B parameter1);
   template<size_t N,
-           typename T,
-           typename A,
-           typename B,
-           typename C>
+    typename T,
+    typename A,
+    typename B,
+    typename C>
   ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                         const T method,
-                                         const A parameter0,
-                                         const B parameter1,
-                                         const C parameter2);
+    const T method,
+    const A parameter0,
+    const B parameter1,
+    const C parameter2);
   template<size_t N,
-           typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D>
+    typename T,
+    typename A,
+    typename B,
+    typename C,
+    typename D>
   ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                         const T method,
-                                         const A parameter0,
-                                         const B parameter1,
-                                         const C parameter2,
-                                         const D parameter3);
+    const T method,
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3);
   template<size_t N,
-           typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D,
-           typename E>
+    typename T,
+    typename A,
+    typename B,
+    typename C,
+    typename D,
+    typename E>
   ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                         const T method,
-                                         const A parameter0,
-                                         const B parameter1,
-                                         const C parameter2,
-                                         const D parameter3,
-                                         const E parameter4);
+    const T method,
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3,
+    const E parameter4);
   template<size_t N,
-           typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D,
-           typename E,
-           typename F>
+    typename T,
+    typename A,
+    typename B,
+    typename C,
+    typename D,
+    typename E,
+    typename F>
   ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                         const T method,
-                                         const A parameter0,
-                                         const B parameter1,
-                                         const C parameter2,
-                                         const D parameter3,
-                                         const E parameter4,
-                                         const F parameter5);
+    const T method,
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3,
+    const E parameter4,
+    const F parameter5);
   template<size_t N,
-           typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D,
-           typename E,
-           typename F,
-           typename G>
+    typename T,
+    typename A,
+    typename B,
+    typename C,
+    typename D,
+    typename E,
+    typename F,
+    typename G>
   ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                         const T method,
-                                         const A parameter0,
-                                         const B parameter1,
-                                         const C parameter2,
-                                         const D parameter3,
-                                         const E parameter4,
-                                         const F parameter5,
-                                         const G parameter6);
+    const T method,
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3,
+    const E parameter4,
+    const F parameter5,
+    const G parameter6);
   template<size_t N,
-           typename T,
-           typename A,
-           typename B,
-           typename C,
-           typename D,
-           typename E,
-           typename F,
-           typename G,
-           typename H>
+    typename T,
+    typename A,
+    typename B,
+    typename C,
+    typename D,
+    typename E,
+    typename F,
+    typename G,
+    typename H>
   ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
-                                         const T method,
-                                         const A parameter0,
-                                         const B parameter1,
-                                         const C parameter2,
-                                         const D parameter3,
-                                         const E parameter4,
-                                         const F parameter5,
-                                         const G parameter6,
-                                         const H parameter7);
+    const T method,
+    const A parameter0,
+    const B parameter1,
+    const C parameter2,
+    const D parameter3,
+    const E parameter4,
+    const F parameter5,
+    const G parameter6,
+    const H parameter7);
 
   bool callWasSuccessful();
 
