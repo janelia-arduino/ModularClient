@@ -139,6 +139,30 @@ void ModularClient::endRequest()
   }
 }
 
+ArduinoJson::JsonVariant ModularClient::processResponse(JsonDocument & json_document)
+{
+  call_successful_ = false;
+  if (!enabled_)
+  {
+    return json_document.to<ArduinoJson::JsonObject>();
+  }
+
+  DeserializationError error = deserializeJson(json_document,json_stream_.getStream());
+  json_stream_.clear();
+
+  if (error)
+  {
+    return json_document.to<ArduinoJson::JsonObject>();
+  }
+  ArduinoJson::JsonObject obj = json_document.as<ArduinoJson::JsonObject>();
+  call_successful_ = (obj.containsKey("result") ? true : false);
+  if (!call_successful_)
+  {
+    return obj;
+  }
+  return obj["result"];
+}
+
 void ModularClient::checkResponse()
 {
   if (!enabled_)

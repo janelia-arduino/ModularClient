@@ -49,8 +49,8 @@ void loop()
   checkCall("badMethod");
   delay(1000);
 
-  StaticJsonBuffer<80> json_buffer;
-  double volume = dev.callGetResult(json_buffer,"volume");
+  StaticJsonDocument<80> json_document;
+  double volume = dev.callGetResult(json_document,"volume");
   if (dev.callWasSuccessful())
   {
     Serial << "volume: " << volume << "\n\n";
@@ -61,8 +61,8 @@ void loop()
   }
   delay(1000);
 
-  StaticJsonBuffer<256> json_buffer2;
-  JsonObject & device_id = dev.callGetResult(json_buffer2,"getDeviceId");
+  StaticJsonDocument<256> json_document2;
+  JsonObject device_id = dev.callGetResult(json_document2,"getDeviceId");
   const char * device_name = device_id["name"];
   if (dev.callWasSuccessful())
   {

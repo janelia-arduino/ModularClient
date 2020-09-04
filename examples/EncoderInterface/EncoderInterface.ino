@@ -6,7 +6,7 @@
 
 
 const long BAUD = 2000000;
-enum{ENCODER_POSITIONS_JSON_BUFFER_SIZE=256};
+enum{ENCODER_POSITIONS_JSON_DOCUMENT_SIZE=256};
 const size_t INDEX = 0;
 const unsigned long POLL_PERIOD = 50;
 const unsigned long PRINT_PERIOD = 500;
@@ -46,8 +46,8 @@ void loop()
   poll_time_previous = time;
   watchdog.reset();
 
-  StaticJsonBuffer<ENCODER_POSITIONS_JSON_BUFFER_SIZE> json_buffer;
-  JsonArray & position_array = encoder_interface_simple_ptr_->callGetResult(json_buffer,"getPositions");
+  StaticJsonDocument<ENCODER_POSITIONS_JSON_DOCUMENT_SIZE> json_document;
+  JsonArray position_array = encoder_interface_simple_ptr_->callGetResult(json_document,"getPositions");
 
   if ((time - print_time_previous) < PRINT_PERIOD)
   {

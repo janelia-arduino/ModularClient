@@ -217,69 +217,62 @@ public:
     const G parameter6,
     const H parameter7);
 
-  template<size_t N,
-    typename T>
-  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+  template<typename T>
+  ArduinoJson::JsonVariant callGetResult(JsonDocument & json_document,
     const T method);
-  template<size_t N,
-    typename T,
+  template<typename T,
     typename A>
-  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+  ArduinoJson::JsonVariant callGetResult(JsonDocument & json_document,
     const T method,
     const A parameter0);
-  template<size_t N,
-    typename T,
+  template<typename T,
     typename A,
     typename B>
-  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+  ArduinoJson::JsonVariant callGetResult(JsonDocument & json_document,
     const T method,
     const A parameter0,
     const B parameter1);
-  template<size_t N,
-    typename T,
+  template<typename T,
     typename A,
     typename B,
     typename C>
-  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+  ArduinoJson::JsonVariant callGetResult(JsonDocument & json_document,
     const T method,
     const A parameter0,
     const B parameter1,
     const C parameter2);
-  template<size_t N,
-    typename T,
+  template<typename T,
     typename A,
     typename B,
     typename C,
     typename D>
-  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+  ArduinoJson::JsonVariant callGetResult(JsonDocument & json_document,
     const T method,
     const A parameter0,
     const B parameter1,
     const C parameter2,
     const D parameter3);
-  template<size_t N,
-    typename T,
+  template<typename T,
     typename A,
     typename B,
     typename C,
     typename D,
     typename E>
-  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+  ArduinoJson::JsonVariant callGetResult(JsonDocument & json_document,
     const T method,
     const A parameter0,
     const B parameter1,
     const C parameter2,
     const D parameter3,
     const E parameter4);
-  template<size_t N,
-    typename T,
+  template<typename T,
     typename A,
     typename B,
     typename C,
     typename D,
     typename E,
     typename F>
-  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+  ArduinoJson::JsonVariant callGetResult(JsonDocument & json_document,
     const T method,
     const A parameter0,
     const B parameter1,
@@ -287,8 +280,7 @@ public:
     const D parameter3,
     const E parameter4,
     const F parameter5);
-  template<size_t N,
-    typename T,
+  template<typename T,
     typename A,
     typename B,
     typename C,
@@ -296,7 +288,7 @@ public:
     typename E,
     typename F,
     typename G>
-  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+  ArduinoJson::JsonVariant callGetResult(JsonDocument & json_document,
     const T method,
     const A parameter0,
     const B parameter1,
@@ -305,8 +297,7 @@ public:
     const E parameter4,
     const F parameter5,
     const G parameter6);
-  template<size_t N,
-    typename T,
+  template<typename T,
     typename A,
     typename B,
     typename C,
@@ -315,7 +306,7 @@ public:
     typename F,
     typename G,
     typename H>
-  ArduinoJson::JsonVariant callGetResult(StaticJsonBuffer<N> & json_buffer,
+  ArduinoJson::JsonVariant callGetResult(JsonDocument & json_document,
     const T method,
     const A parameter0,
     const B parameter1,
@@ -358,9 +349,8 @@ private:
   template<typename T>
   void addParameter(const T parameter);
   void endRequest();
-  // ArduinoJson::JsonObject & sendRequestGetResponse(char response[STRING_LENGTH_RESPONSE], ArduinoJson::StaticJsonBuffer<JSON_BUFFER_SIZE> & buffer);
-  template<size_t N>
-  ArduinoJson::JsonVariant processResponse(StaticJsonBuffer<N> & json_buffer);
+  // ArduinoJson::JsonObject sendRequestGetResponse(char response[STRING_LENGTH_RESPONSE], ArduinoJson::JsonDocument & json_document);
+  ArduinoJson::JsonVariant processResponse(JsonDocument & json_document);
   void checkResponse();
 };
 #include "ModularClient/ModularClientDefinitions.h"

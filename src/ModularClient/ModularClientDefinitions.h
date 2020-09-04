@@ -488,34 +488,31 @@ void ModularClient::callUntilSuccessful(const T method,
   while (!callWasSuccessful());
 }
 
-template<size_t N,
-  typename T>
-ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
+template<typename T>
+ArduinoJson::JsonVariant ModularClient::callGetResult(JsonDocument & json_document,
   const T method)
 {
   beginRequest(method);
   endRequest();
-  return processResponse(json_buffer);
+  return processResponse(json_document);
 }
 
-template<size_t N,
-  typename T,
+template<typename T,
   typename A>
-ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
+ArduinoJson::JsonVariant ModularClient::callGetResult(JsonDocument & json_document,
   const T method,
   const A parameter0)
 {
   beginRequest(method);
   addParameter(parameter0);
   endRequest();
-  return processResponse(json_buffer);
+  return processResponse(json_document);
 }
 
-template<size_t N,
-  typename T,
+template<typename T,
   typename A,
   typename B>
-ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
+ArduinoJson::JsonVariant ModularClient::callGetResult(JsonDocument & json_document,
   const T method,
   const A parameter0,
   const B parameter1)
@@ -524,15 +521,14 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
   addParameter(parameter0);
   addParameter(parameter1);
   endRequest();
-  return processResponse(json_buffer);
+  return processResponse(json_document);
 }
 
-template<size_t N,
-  typename T,
+template<typename T,
   typename A,
   typename B,
   typename C>
-ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
+ArduinoJson::JsonVariant ModularClient::callGetResult(JsonDocument & json_document,
   const T method,
   const A parameter0,
   const B parameter1,
@@ -543,16 +539,15 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
   addParameter(parameter1);
   addParameter(parameter2);
   endRequest();
-  return processResponse(json_buffer);
+  return processResponse(json_document);
 }
 
-template<size_t N,
-  typename T,
+template<typename T,
   typename A,
   typename B,
   typename C,
   typename D>
-ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
+ArduinoJson::JsonVariant ModularClient::callGetResult(JsonDocument & json_document,
   const T method,
   const A parameter0,
   const B parameter1,
@@ -565,17 +560,16 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
   addParameter(parameter2);
   addParameter(parameter3);
   endRequest();
-  return processResponse(json_buffer);
+  return processResponse(json_document);
 }
 
-template<size_t N,
-  typename T,
+template<typename T,
   typename A,
   typename B,
   typename C,
   typename D,
   typename E>
-ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
+ArduinoJson::JsonVariant ModularClient::callGetResult(JsonDocument & json_document,
   const T method,
   const A parameter0,
   const B parameter1,
@@ -590,18 +584,17 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
   addParameter(parameter3);
   addParameter(parameter4);
   endRequest();
-  return processResponse(json_buffer);
+  return processResponse(json_document);
 }
 
-template<size_t N,
-  typename T,
+template<typename T,
   typename A,
   typename B,
   typename C,
   typename D,
   typename E,
   typename F>
-ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
+ArduinoJson::JsonVariant ModularClient::callGetResult(JsonDocument & json_document,
   const T method,
   const A parameter0,
   const B parameter1,
@@ -618,11 +611,10 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
   addParameter(parameter4);
   addParameter(parameter5);
   endRequest();
-  return processResponse(json_buffer);
+  return processResponse(json_document);
 }
 
-template<size_t N,
-  typename T,
+template<typename T,
   typename A,
   typename B,
   typename C,
@@ -630,7 +622,7 @@ template<size_t N,
   typename E,
   typename F,
   typename G>
-ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
+ArduinoJson::JsonVariant ModularClient::callGetResult(JsonDocument & json_document,
   const T method,
   const A parameter0,
   const B parameter1,
@@ -649,11 +641,10 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
   addParameter(parameter5);
   addParameter(parameter6);
   endRequest();
-  return processResponse(json_buffer);
+  return processResponse(json_document);
 }
 
-template<size_t N,
-  typename T,
+template<typename T,
   typename A,
   typename B,
   typename C,
@@ -662,7 +653,7 @@ template<size_t N,
   typename F,
   typename G,
   typename H>
-ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json_buffer,
+ArduinoJson::JsonVariant ModularClient::callGetResult(JsonDocument & json_document,
   const T method,
   const A parameter0,
   const B parameter1,
@@ -683,7 +674,7 @@ ArduinoJson::JsonVariant ModularClient::callGetResult(StaticJsonBuffer<N> & json
   addParameter(parameter6);
   addParameter(parameter7);
   endRequest();
-  return processResponse(json_buffer);
+  return processResponse(json_document);
 }
 
 template<typename T>
@@ -708,30 +699,6 @@ void ModularClient::setAddress(const T (&address_array)[N])
     removeAddress();
     address_.fill(address_array);
   }
-}
-
-template<size_t N>
-ArduinoJson::JsonVariant ModularClient::processResponse(StaticJsonBuffer<N> & json_buffer)
-{
-  call_successful_ = false;
-  if (!enabled_)
-  {
-    ArduinoJson::JsonObject& root = json_buffer.createObject();
-    return root;
-  }
-
-  JsonObject& root = json_buffer.parseObject(json_stream_.getStream());
-  json_stream_.clear();
-
-  if (root.success())
-  {
-    call_successful_ = (root.containsKey("result") ? true : false);
-  }
-  if (!call_successful_)
-  {
-    return root;
-  }
-  return root["result"];
 }
 
 #endif
